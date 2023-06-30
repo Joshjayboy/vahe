@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from "react";
-import ProductItem from "./ProductItem";
-import { BACKEND_BASE_URL } from "../Constants/AppConstants";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Logout from "./Logout";
-import axios from "axios";
-import InputBase from "@mui/material/InputBase";
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
+import React, { useEffect, useState } from 'react';
+import ProductItem from './ProductItem';
+import { BACKEND_BASE_URL } from '../Constants/AppConstants';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Logout from './Logout';
+import axios from 'axios';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
-import InputAdornment from "@mui/material/InputAdornment";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
+import InputAdornment from '@mui/material/InputAdornment';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-import Container from "@mui/material/Container";
+import FormControl from '@mui/material/FormControl';
+
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
@@ -33,14 +30,14 @@ const ProductsList = () => {
     try {
       const response = await axios.get(`${BACKEND_BASE_URL}/products`, {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-          Cookie: "JSESSIONID=CA5696E69CC8087799286FBD15245034",
+          Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+          Cookie: 'JSESSIONID=CA5696E69CC8087799286FBD15245034',
         },
       });
       const data = response.data;
       setProducts(data);
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error('Error fetching products:', error);
     }
   };
 
@@ -69,12 +66,12 @@ const ProductsList = () => {
   const filterProducts = (products) => {
     if (search.length > 3) {
       products = products.filter((product) =>
-        product.name.toLowerCase().includes(search.toLowerCase())
+        product.name.toLowerCase().includes(search.toLowerCase()),
       );
     }
     if (selectedCategory) {
       products = products.filter(
-        (product) => product.productCategory.name === selectedCategory
+        (product) => product.productCategory.name === selectedCategory,
       );
     }
     return products;
@@ -84,28 +81,28 @@ const ProductsList = () => {
     <>
       <Logout />
 
-      <Box sx={{ minHeight: "600px", marginTop: "30px" }}>
+      <Box sx={{ minHeight: '600px', marginTop: '30px' }}>
         <Box
           sx={{
-            "@media (min-width: 768px)": {
-              paddingTop: "40px",
-              paddingBottom: "40px",
+            '@media (min-width: 768px)': {
+              paddingTop: '40px',
+              paddingBottom: '40px',
             },
-            "@media (min-width: 0px)": {
-              paddingTop: "8px",
-              paddingBottom: "8px",
+            '@media (min-width: 0px)': {
+              paddingTop: '8px',
+              paddingBottom: '8px',
             },
           }}
         >
           <Grid
             spacing={2}
             sx={{
-              "@media (min-width: 768px)": {
-                paddingLeft: "24px",
-                paddingRight: "24px",
+              '@media (min-width: 768px)': {
+                paddingLeft: '24px',
+                paddingRight: '24px',
               },
-              "@media (min-width: 1200px)": {
-                justifyContent: "space-between",
+              '@media (min-width: 1200px)': {
+                justifyContent: 'space-between',
               },
             }}
           >
@@ -113,9 +110,9 @@ const ProductsList = () => {
               container
               spacing={2}
               sx={{
-                justifyContent: "space-between",
-                "@media (min-width: 1200px)": {
-                  justifyContent: "space-between",
+                justifyContent: 'space-between',
+                '@media (min-width: 1200px)': {
+                  justifyContent: 'space-between',
                 },
               }}
             >
@@ -127,62 +124,61 @@ const ProductsList = () => {
                 lg={3}
                 xl={3}
                 sx={{
-                  "@media (min-width: 992px)": {
-                    top: "-195px",
+                  '@media (min-width: 992px)': {
+                    top: '-195px',
                   },
-                  "@media (min-width: 768px)": {
-                    top: "-153px",
+                  '@media (min-width: 768px)': {
+                    top: '-153px',
                   },
 
-                  "@media (min-width: 1200px)": {
+                  '@media (min-width: 1200px)': {
                     top: 0,
-                    position: "relative",
+                    position: 'relative',
                   },
-                  top: "50px",
-                  width: "100%",
-                  display: "flex",
-                  zIndex: "111",
-                  position: "sticky",
-                  flexDirection: "column",
-                  backgroundColor: "#f9f9fb",
-                  boxSizing: "border-box",
+                  top: '50px',
+                  display: 'flex',
+                  zIndex: '111',
+                  position: 'sticky',
+                  flexDirection: 'column',
+                  backgroundColor: '#f9f9fb',
+                  boxSizing: 'border-box',
                 }}
               >
                 <div
                   style={{
-                    width: "100%",
-                    display: "flex",
-                    marginTop: "0",
-                    flexDirection: "column",
-                    paddingBottom: "8px",
-                    backgroundColor: "#f9f9fb",
+                    display: 'flex',
+                    marginTop: '0',
+                    marginRight: '15px',
+                    flexDirection: 'column',
+                    paddingBottom: '8px',
+                    backgroundColor: '#f9f9fb',
                   }}
                 >
                   <FormControl>
                     <OutlinedInput
-                      type="text"
+                      type='text'
                       startAdornment={
-                        <InputAdornment position="end">
-                          <IconButton edge="start">
+                        <InputAdornment position='end'>
+                          <IconButton edge='start'>
                             <SearchIcon />
                           </IconButton>
                         </InputAdornment>
                       }
-                      placeholder="Search Products"
+                      placeholder='Search Products'
                     />
                   </FormControl>
 
-                  <Box sx={{ margin: "21px" }}>
-                    <Typography sx={{ marginBottom: "20px" }}>
+                  <Box sx={{ margin: '21px' }}>
+                    <Typography sx={{ marginBottom: '20px' }}>
                       Categories:
                     </Typography>
                     <List>
                       <ListItem
                         button
-                        key="All"
+                        key='All'
                         onClick={() => handleCategorySelect(null)}
                       >
-                        <ListItemText primary="All categories" />
+                        <ListItemText primary='All categories' />
                       </ListItem>
                       {categories.map((category) => (
                         <ListItem
@@ -209,19 +205,19 @@ const ProductsList = () => {
                 xl={9}
               >
                 <div>
-                  <div style={{ height: "auto", overflow: "visible" }}>
+                  <div style={{ height: 'auto', overflow: 'visible' }}>
                     <Box
                       sx={{
-                        borderBottom: "2px solid #e3e3e3",
-                        marginBottom: "40px",
-                        paddingBottom: "40px",
+                        borderBottom: '2px solid #e3e3e3',
+                        marginBottom: '40px',
+                        paddingBottom: '40px',
                       }}
                     >
                       <Box
                         sx={{
                           flexGrow: 1,
-                          justifyContent: "space-between",
-                          marginBottom: "21px",
+                          justifyContent: 'space-between',
+                          marginBottom: '21px',
                         }}
                       >
                         {Object.entries(productsByCategory).map(
@@ -231,17 +227,17 @@ const ProductsList = () => {
 
                             return (
                               <>
-                                <Box key={category} sx={{ margin: "-1px" }}>
+                                <Box key={category} sx={{ margin: '-1px' }}>
                                   <Typography
-                                    component="h2"
+                                    component='h2'
                                     sx={{
                                       padding: 0,
-                                      fontSize: "24px",
-                                      fontWeight: "bold",
-                                      lineHeight: "33px",
-                                      color: "#c5022e",
-                                      margin: "10px",
-                                      marginBottom: "50px",
+                                      fontSize: '24px',
+                                      fontWeight: 'bold',
+                                      lineHeight: '33px',
+                                      color: '#c5022e',
+                                      margin: '10px',
+                                      marginBottom: '50px',
                                     }}
                                   >
                                     {category}
@@ -251,11 +247,11 @@ const ProductsList = () => {
                                   container
                                   spacing={{ xs: 5 }}
                                   sx={{
-                                    marginBottom: "10%",
-                                    "@media (min-width: 1200px)": {
-                                      justifyContent: "start ",
+                                    marginBottom: '10%',
+                                    '@media (min-width: 1200px)': {
+                                      justifyContent: 'start ',
                                     },
-                                    justifyContent: "space-around",
+                                    justifyContent: 'space-around',
                                   }}
                                 >
                                   {products.map((product) => (
@@ -267,7 +263,7 @@ const ProductsList = () => {
                                 </Grid>
                               </>
                             );
-                          }
+                          },
                         )}
                       </Box>
                     </Box>
