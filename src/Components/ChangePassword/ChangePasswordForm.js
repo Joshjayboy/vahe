@@ -1,672 +1,133 @@
-import React, { useState } from "react";
-import { Box, Button } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import React, { useState } from 'react';
+import { Box, Button } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-// const ChangePasswordForm = ({
-//   onSubmit,
-//   password,
-//   setPassword,
-//   confirmPassword,
-//   setConfirmPassword,
-// }) => (
-//   <>
-//     <Box container sx={{ minHeight: "600px" }}>
-//       <Box
-//         sx={{
-//           display: "flex",
-//           alignItems: "center",
-//           paddingTop: "120px",
-//           flexDirection: "column",
-//         }}
-//       >
-//         <Box sx={{ width: "60%" }}>
-//           <Box sx={{ textAlign: "center", marginBottom: "56px" }}>
-//             <Box
-//               component="span"
-//               sx={{
-//                 color: "rgb(0, 0, 0)",
-//                 fontWeight: "700",
-//                 paddingBottom: "24px",
-//                 fontSize: "24px",
-//               }}
-//             >
-//               Reset Password
-//             </Box>
-//           </Box>
-//         </Box>
+function ChangePasswordForm({
+                              onSubmit,
+                              password,
+                              setPassword,
+                              confirmPassword,
+                              setConfirmPassword,
+                            }) {
+  const [validationError, setValidationError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-//         <Box
-//           sx={{
-//             marginTop: "16px",
-//             width: "100%",
-//             justifyContent: "center",
-//             alignItems: "center",
-//           }}
-//         >
-//           <Box
-//             sx={{
-//               width: "100%",
-//               display: "flex",
-//               alignItems: "baseline",
+  const toggleShowPassword = () => setShowPassword((show) => !show);
+  const toggleShowConfirmPassword = () => setShowConfirmPassword((show) => !show);
 
-//               justifyContent: "center",
-//             }}
-//           >
-//             <form
-//               animated
-//               className="form1"
-//               marginRight="8px"
-//               marginBottom="8px"
-//               sx={{
-//                 overflow: "hidden",
-//                 fontSize: "14px",
-//               }}
-//             >
-//               <div className="form1_1">
-//                 <div className="form1_2">
-//                   <label>
-//                     <span>New Password</span>
-//                   </label>
-//                 </div>
-
-//                 <div className="form1_4">
-//                   <input
-//                     variant="outlined"
-//                     fullWidth
-//                     placeholder="New Password"
-//                     label="Password"
-//                     type="password"
-//                     value={password}
-//                     onChange={(e) => setPassword(e.target.value)}
-//                     required
-//                   ></input>
-//                   <div>
-//                     <button className="input2">
-//                       <span className="input3">
-//                         <picture>
-//                           <img
-//                             alt="img"
-//                             src="	https://menu.am/images/icons/eye-closed.png"
-//                           />
-//                         </picture>
-//                       </span>
-//                     </button>
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className="form1_1">
-//                 <div className="form1_2">
-//                   <label>
-//                     <span>Confirm Password</span>
-//                   </label>
-//                 </div>
-
-//                 <div className="form1_4">
-//                   <input
-//                     variant="outlined"
-//                     placeholder="Confirm Password"
-//                     label="Confirm Password"
-//                     type="password"
-//                     fullWidth
-//                     value={confirmPassword}
-//                     onChange={(e) => setConfirmPassword(e.target.value)}
-//                     required
-//                   ></input>
-//                   <div>
-//                     <button className="input2">
-//                       <span className="input3">
-//                         <picture>
-//                           <img
-//                             alt="img"
-//                             src="	https://menu.am/images/icons/eye-closed.png"
-//                           />
-//                         </picture>
-//                       </span>
-//                     </button>
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {/* <Box sx={{ flexWrap: "wrap", width: "100%" }}>
-//                 <div>
-//                   <div className="form1_2">
-//                     <label>
-//                       <span>Password</span>
-//                     </label>
-//                   </div>
-//                   <FormControl sx={{ width: "100%" }}>
-//                     <OutlinedInput
-//                       outline="none"
-//                       placeholder="Enter your password"
-//                       required
-//                       name="password"
-//                       // label="password"
-//                       className="form1_4"
-//                       onChange={(e) => {
-//                         setPassword(e.target.value);
-//                       }}
-//                       sx={{
-//                         borderRadius: "10px",
-//                         border: "1px solid #cccccc",
-//                         outline: "none",
-//                         backgroundColor: "#ffffff",
-//                       }}
-//                       // id="outlined-adornment-password"
-//                       type={showPassword ? "text" : "password"}
-//                       endAdornment={
-//                         <InputAdornment position="end">
-//                           <IconButton
-//                             aria-label="toggle password visibility"
-//                             onClick={handleClickShowPassword}
-//                             // onMouseDown={handleMouseDownPassword}
-//                             edge="end"
-//                           >
-//                             {showPassword ? <VisibilityOff /> : <Visibility />}
-//                           </IconButton>
-//                         </InputAdornment>
-//                       }
-//                       // label="Password"
-//                     />
-//                   </FormControl>
-//                 </div>
-//               </Box>
-
-//               <Box mt={2} mb={4} sx={{ flexWrap: "wrap", width: "100%" }}>
-//                 <div>
-//                   <div className="form1_2">
-//                     <label>
-//                       <span>Confirm Password</span>
-//                     </label>
-//                   </div>
-//                   <FormControl sx={{ width: "100%" }}>
-//                     <OutlinedInput
-//                       outline="none"
-//                       placeholder="Confirm your password"
-//                       required
-//                       name="Confirm password"
-//                       // label="password"
-//                       className="form1_4"
-//                       onChange={(e) => {
-//                         setConfirmPassword(e.target.value);
-//                       }}
-//                       sx={{
-//                         borderRadius: "10px",
-//                         border: "1px solid #cccccc",
-//                         outline: "none",
-//                         backgroundColor: " #ffffff",
-//                       }}
-//                       // id="outlined-adornment-password"
-//                       type={showPasswordd ? "text" : "password"}
-//                       endAdornment={
-//                         <InputAdornment position="end">
-//                           <IconButton
-//                             aria-label="toggle password visibility"
-//                             onClick={handleClickShowPasswordd}
-//                             edge="end"
-//                           >
-//                             {showPasswordd ? <VisibilityOff /> : <Visibility />}
-//                           </IconButton>
-//                         </InputAdornment>
-//                       }
-//                       // label="Password"
-//                     />
-//                   </FormControl>
-//                 </div>
-//               </Box> */}
-
-//               {/* <Box sx={{ flexWrap: "wrap", width: "100%" }}>
-//                   <div>
-//                     <div className="form1_2">
-//                       <label>
-//                         <span>Password</span>
-//                       </label>
-//                     </div>
-//                     <FormControl sx={{ width: "100%" }}>
-//                       <OutlinedInput
-//                         outline="none"
-//                         placeholder="Enter your password"
-//                         required
-//                         name="password"
-//                         // label="password"
-//                         className="form1_4"
-//                         onChange={(e) => {
-//                           setPassword(e.target.value);
-//                         }}
-//                         sx={{
-//                           borderRadius: "10px",
-//                           border: "1px solid #cccccc",
-//                           outline: "none",
-//                           backgroundColor: "#ffffff",
-//                         }}
-//                         // id="outlined-adornment-password"
-//                         type={showPassword ? "text" : "password"}
-//                         endAdornment={
-//                           <InputAdornment position="end">
-//                             <IconButton
-//                               aria-label="toggle password visibility"
-//                               onClick={handleClickShowPassword}
-//                               // onMouseDown={handleMouseDownPassword}
-//                               edge="end"
-//                             >
-//                               {showPassword ? (
-//                                 <VisibilityOff />
-//                               ) : (
-//                                 <Visibility />
-//                               )}
-//                             </IconButton>
-//                           </InputAdornment>
-//                         }
-//                         // label="Password"
-//                       />
-//                     </FormControl>
-//                   </div>
-//                 </Box> */}
-//               {/* <Box mt={2} mb={4} sx={{ flexWrap: "wrap", width: "100%" }}>
-//                   <div>
-//                     <div className="form1_2">
-//                       <label>
-//                         <span>Confirm Password</span>
-//                       </label>
-//                     </div>
-//                     <FormControl sx={{ width: "100%" }}>
-//                       {/* <InputLabel htmlFor="outlined-adornment-password">
-//                 Password
-//               </InputLabel> */}
-//               {/* <OutlinedInput
-//                   outline="none"
-//                   placeholder="Confirm your password"
-//                   required
-//                   name="Confirm password"
-//                   // label="password"
-//                   className="form1_4"
-//                   onChange={(e) => {
-//                     setConfirmPassword(e.target.value);
-//                   }}
-//                   sx={{
-//                     borderRadius: "10px",
-//                     border: "1px solid #cccccc",
-//                     outline: "none",
-//                     backgroundColor: " #ffffff",
-//                   }}
-//                   // id="outlined-adornment-password"
-//                   type={showPassword ? "text" : "password"}
-//                   endAdornment={
-//                     <InputAdornment position="end">
-//                       <IconButton
-//                         aria-label="toggle password visibility"
-//                         onClick={handleClickShowPassword}
-//                         // onMouseDown={handleMouseDownPassword}
-//                         edge="end"
-//                       >
-//                         {showPassword ? <VisibilityOff /> : <Visibility />}
-//                       </IconButton>
-//                     </InputAdornment>
-//                   } */}
-
-//               {/* /> */}
-//               {/* </FormControl>
-//                   </div>
-//                 </Box> */}
-//             </form>
-//           </Box>
-
-//           <Box
-//             sx={{
-//               width: "100%",
-//               display: "flex",
-//               marginTop: "56px",
-//               justifyContent: "center",
-//             }}
-//           >
-//             <Box sx={{ width: "30%" }}>
-//               <Button
-//                 width="100%"
-//                 type="submit"
-//                 onClick={onSubmit}
-//                 variant="contained"
-//                 sx={{
-//                   padding: "10px 18px",
-//                   fontWeight: "bold",
-//                   lineHeight: "22px",
-//                   width: "100%",
-//                   borderRadius: "10px",
-
-//                   background:
-//                     "transparent linear-gradient(180deg, #c5022e 0%, #ea1f4d 100%) 0% 0% no-repeat",
-//                 }}
-//               >
-//                 Change Password
-//               </Button>
-//             </Box>
-//           </Box>
-//         </Box>
-//       </Box>
-//     </Box>
-//   </>
-// );
-
-// export default ChangePasswordForm;
-
-function ChangePasswordForm({ onSubmit }) {
-  const [isError, setIsError] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [confirmPassword, setConfirmPassword] = useState("");
-
-  const [showPassword, setShowPassword] = React.useState(false);
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const [showPasswordd, setShowPasswordd] = React.useState(false);
-
-  const handleClickShowPasswordd = () => setShowPasswordd((show) => !show);
-
-  const checkValidation = (e) => {
-    const confPass = e.target.value;
-    setConfirmPassword(confPass);
-    if (password != confPass) {
-      setIsError("Password and confirm password should be same");
+  const validatePassword = (e) => {
+    const confirmPasswordValue = e.target.value;
+    setConfirmPassword(confirmPasswordValue);
+    if (password !== confirmPasswordValue) {
+      setValidationError('Password and confirm password should be same');
     } else {
-      setIsError("");
+      setValidationError('');
+    }
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (password === confirmPassword) {
+      onSubmit({ password });
     }
   };
 
   return (
-    <>
-      <Box container sx={{ minHeight: "600px" }}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            paddingTop: "120px",
-            flexDirection: "column",
-          }}
-        >
-          <Box sx={{ width: "60%" }}>
-            <Box sx={{ textAlign: "center", marginBottom: "56px" }}>
-              <Box
-                component="span"
-                sx={{
-                  color: "rgb(0, 0, 0)",
-                  fontWeight: "700",
-                  paddingBottom: "24px",
-                  fontSize: "24px",
-                }}
-              >
-                Reset Password
-              </Box>
-            </Box>
-          </Box>
-
-          <Box
-            sx={{
-              marginTop: "16px",
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+    <Box sx={{ minHeight: '600px' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          paddingTop: '120px',
+          flexDirection: 'column',
+        }}
+      >
+        <Box sx={{ width: '60%' }}>
+          <Box sx={{ textAlign: 'center', marginBottom: '56px' }}>
             <Box
+              component='span'
               sx={{
-                width: "100%",
-                display: "flex",
-                alignItems: "baseline",
-
-                justifyContent: "center",
+                color: 'rgb(0, 0, 0)',
+                fontWeight: '700',
+                paddingBottom: '24px',
+                fontSize: '24px',
               }}
             >
-              <form
-                onSubmit={onSubmit}
-                animated
-                className="form1"
-                marginRight="8px"
-                marginBottom="8px"
-                sx={{
-                  overflow: "hidden",
-                  fontSize: "14px",
-                }}
-              >
-                {/* <div className="form1_1">
-                  <div className="form1_2">
-                    <label>
-                      <span>New Password</span>
-                    </label>
-                  </div>
+              Reset Password
+            </Box>
+          </Box>
+        </Box>
 
-                  <div className="form1_4">
-                    <input
-                      variant="outlined"
-                      fullWidth
-                      placeholder="New Password"
-                      label="Password"
-                      type="password"
+        <Box
+          sx={{
+            marginTop: '16px',
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Box
+            sx={{
+              width: '100%',
+              display: 'flex',
+              alignItems: 'baseline',
+              justifyContent: 'center',
+            }}
+          >
+            <form onSubmit={onSubmit}>
+              <Box sx={{ flexWrap: 'wrap', width: '100%' }}>
+                <div>
+                  <label>
+                    <span>Password</span>
+                  </label>
+                  <FormControl sx={{ width: '100%' }}>
+                    <OutlinedInput
+                      placeholder='Enter your password'
+                      required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      required
-                    ></input>
-                    <div>
-                      <button className="input2">
-                        <span className="input3">
-                          <picture>
-                            <img
-                              alt="img"
-                              src="	https://menu.am/images/icons/eye-closed.png"
-                            />
-                          </picture>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                </div> */}
-                {/* <div className="form1_1">
-                  <div className="form1_2">
-                    <label>
-                      <span>Confirm Password</span>
-                    </label>
-                  </div>
-
-                  <div className="form1_4">
-                    <input
-                      variant="outlined"
-                      placeholder="Confirm Password"
-                      label="Confirm Password"
-                      type="password"
-                      fullWidth
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      required
-                    ></input>
-                    <div>
-                      <button className="input2">
-                        <span className="input3">
-                          <picture>
-                            <img
-                              alt="img"
-                              src="	https://menu.am/images/icons/eye-closed.png"
-                            />
-                          </picture>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                </div> */}
-
-                {/* <Box sx={{ flexWrap: "wrap", width: "100%" }}>
-                <div>
-                  <div className="form1_2">
-                    <label>
-                      <span>Password</span>
-                    </label>
-                  </div>
-                  <FormControl sx={{ width: "100%" }}>
-                    <OutlinedInput
-                      outline="none"
-                      placeholder="Enter your password"
-                      required
-                      name="password"
-                      // label="password"
-                      className="form1_4"
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                      }}
-                      sx={{
-                        borderRadius: "10px",
-                        border: "1px solid #cccccc",
-                        outline: "none",
-                        backgroundColor: "#ffffff",
-                      }}
-                      // id="outlined-adornment-password"
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword ? 'text' : 'password'}
                       endAdornment={
-                        <InputAdornment position="end">
+                        <InputAdornment position='end'>
                           <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            // onMouseDown={handleMouseDownPassword}
-                            edge="end"
+                            aria-label='toggle password visibility'
+                            onClick={toggleShowPassword}
+                            edge='end'
                           >
                             {showPassword ? <VisibilityOff /> : <Visibility />}
                           </IconButton>
                         </InputAdornment>
                       }
-                      // label="Password"
                     />
                   </FormControl>
                 </div>
-              </Box> */}
 
-                {/* <Box mt={2} mb={4} sx={{ flexWrap: "wrap", width: "100%" }}>
-                <div>
-                  <div className="form1_2">
+                <Box mt={2} mb={4} sx={{ flexWrap: 'wrap', width: '100%' }}>
+                  <div>
                     <label>
                       <span>Confirm Password</span>
                     </label>
-                  </div>
-                  <FormControl sx={{ width: "100%" }}>
-                    <OutlinedInput
-                      outline="none"
-                      placeholder="Confirm your password"
-                      required
-                      name="Confirm password"
-                      // label="password"
-                      className="form1_4"
-                      onChange={(e) => {
-                        setConfirmPassword(e.target.value);
-                      }}
-                      sx={{
-                        borderRadius: "10px",
-                        border: "1px solid #cccccc",
-                        outline: "none",
-                        backgroundColor: " #ffffff",
-                      }}
-                      // id="outlined-adornment-password"
-                      type={showPasswordd ? "text" : "password"}
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPasswordd}
-                            edge="end"
-                          >
-                            {showPasswordd ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                      // label="Password"
-                    />
-                  </FormControl>
-                </div>
-              </Box> */}
-
-                <Box sx={{ flexWrap: "wrap", width: "100%" }}>
-                  <div>
-                    <div className="form1_2">
-                      <label>
-                        <span>Password</span>
-                      </label>
-                    </div>
-                    <FormControl sx={{ width: "100%" }}>
+                    <FormControl sx={{ width: '100%' }}>
                       <OutlinedInput
-                        placeholder="Enter your password"
+                        placeholder='Confirm your password'
                         required
-                        name="password"
-                        // label="password"
-                        value={password}
-                        className="form1_4"
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
-                        sx={{
-                          borderRadius: "10px",
-                          border: "1px solid #cccccc",
-                          outline: "none",
-                          backgroundColor: "#ffffff",
-                        }}
-                        type={showPassword ? "text" : "password"}
-                        endAdornment={
-                          <InputAdornment position="end">
-                            <IconButton
-                              aria-label="toggle password visibility"
-                              onClick={handleClickShowPassword}
-                              edge="end"
-                            >
-                              {showPassword ? (
-                                <VisibilityOff />
-                              ) : (
-                                <Visibility />
-                              )}
-                            </IconButton>
-                          </InputAdornment>
-                        }
-                      />
-                    </FormControl>
-                  </div>
-                </Box>
-
-                <Box mt={2} mb={4} sx={{ flexWrap: "wrap", width: "100%" }}>
-                  <div>
-                    <div className="form1_2">
-                      <label>
-                        <span>Confirm Password</span>
-                      </label>
-                    </div>
-                    <FormControl sx={{ width: "100%" }}>
-                      <OutlinedInput
-                        outline="none"
-                        placeholder="Confirm your password"
-                        required
-                        name="Confirm password"
                         value={confirmPassword}
-                        className="form1_4"
-                        onChange={(e) => checkValidation(e)}
-                        // onChange={(e) => {
-                        //   setConfirmPassword(e.target.value);
-                        // }}
-                        sx={{
-                          borderRadius: "10px",
-                          border: "1px solid #cccccc",
-                          outline: "none",
-                          backgroundColor: " #ffffff",
-                        }}
-                        type={showPasswordd ? "text" : "password"}
+                        onChange={validatePassword}
+                        type={showConfirmPassword ? 'text' : 'password'}
                         endAdornment={
-                          <InputAdornment position="end">
+                          <InputAdornment position='end'>
                             <IconButton
-                              aria-label="toggle password visibility"
-                              onClick={handleClickShowPasswordd}
-                              edge="end"
+                              aria-label='toggle password visibility'
+                              onClick={toggleShowConfirmPassword}
+                              edge='end'
                             >
-                              {showPasswordd ? (
+                              {showConfirmPassword ? (
                                 <VisibilityOff />
                               ) : (
                                 <Visibility />
@@ -675,140 +136,45 @@ function ChangePasswordForm({ onSubmit }) {
                           </InputAdornment>
                         }
                       />
-                      {isError}
                     </FormControl>
                   </div>
+                  {validationError}
                 </Box>
 
-                {/* <Box sx={{ flexWrap: "wrap", width: "100%" }}>
-                  <div>
-                    <div className="form1_2">
-                      <label>
-                        <span>Password</span>
-                      </label>
-                    </div>
-                    <FormControl sx={{ width: "100%" }}>
-                      <OutlinedInput
-                        outline="none"
-                        placeholder="Enter your password"
-                        required
-                        name="password"
-                        // label="password"
-                        className="form1_4"
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
-                        sx={{
-                          borderRadius: "10px",
-                          border: "1px solid #cccccc",
-                          outline: "none",
-                          backgroundColor: "#ffffff",
-                        }}
-                        // id="outlined-adornment-password"
-                        type={showPassword ? "text" : "password"}
-                        endAdornment={
-                          <InputAdornment position="end">
-                            <IconButton
-                              aria-label="toggle password visibility"
-                              onClick={handleClickShowPassword}
-                              // onMouseDown={handleMouseDownPassword}
-                              edge="end"
-                            >
-                              {showPassword ? (
-                                <VisibilityOff />
-                              ) : (
-                                <Visibility />
-                              )}
-                            </IconButton>
-                          </InputAdornment>
-                        }
-                        // label="Password"
-                      />
-                    </FormControl>
-                  </div>
-                </Box> */}
-                {/* <Box mt={2} mb={4} sx={{ flexWrap: "wrap", width: "100%" }}>
-                  <div>
-                    <div className="form1_2">
-                      <label>
-                        <span>Confirm Password</span>
-                      </label>
-                    </div>
-                    <FormControl sx={{ width: "100%" }}>
-                      {/* <InputLabel htmlFor="outlined-adornment-password">
-                Password
-              </InputLabel> */}
-                {/* <OutlinedInput
-                  outline="none"
-                  placeholder="Confirm your password"
-                  required
-                  name="Confirm password"
-                  // label="password"
-                  className="form1_4"
-                  onChange={(e) => {
-                    setConfirmPassword(e.target.value);
-                  }}
+                <Box
                   sx={{
-                    borderRadius: "10px",
-                    border: "1px solid #cccccc",
-                    outline: "none",
-                    backgroundColor: " #ffffff",
-                  }}
-                  // id="outlined-adornment-password"
-                  type={showPassword ? "text" : "password"}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        // onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  } */}
-
-                {/* /> */}
-                {/* </FormControl>
-                  </div>
-                </Box> */}
-              </form>
-            </Box>
-
-            <Box
-              sx={{
-                width: "100%",
-                display: "flex",
-                marginTop: "56px",
-                justifyContent: "center",
-              }}
-            >
-              <Box sx={{ width: "30%" }}>
-                <Button
-                  width="100%"
-                  type="submit"
-                  onClick={onSubmit}
-                  variant="contained"
-                  sx={{
-                    padding: "10px 18px",
-                    fontWeight: "bold",
-                    lineHeight: "22px",
-                    width: "100%",
-                    borderRadius: "10px",
-
-                    background:
-                      "transparent linear-gradient(180deg, #c5022e 0%, #ea1f4d 100%) 0% 0% no-repeat",
+                    width: '100%',
+                    display: 'flex',
+                    marginTop: '56px',
+                    justifyContent: 'center',
                   }}
                 >
-                  Change Password
-                </Button>
+                  <Box sx={{ width: '30%' }}>
+                    <Button
+                      width='100%'
+                      type='submit'
+                      variant='contained'
+                      sx={{
+                        padding: '10px 18px',
+                        fontWeight: 'bold',
+                        lineHeight: '22px',
+                        width: '100%',
+                        borderRadius: '10px',
+                        background:
+                          'transparent linear-gradient(180deg, #c5022e 0%, #ea1f4d 100%) 0% 0% no-repeat',
+                      }}
+                    >
+                      Change Password
+                    </Button>
+                  </Box>
+                </Box>
               </Box>
-            </Box>
+            </form>
           </Box>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }
+
 export default ChangePasswordForm;

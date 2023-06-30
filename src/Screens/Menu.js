@@ -1,25 +1,25 @@
 import React from 'react';
-import ProductList from "../Components/ProductList";
+import ProductList from '../Components/ProductList';
 
 function Menu() {
-    // test modal
+  // test modal
 
-    const renderProducts = () => {
-        return (<div>
-                {/* <Logout/> */}
-                <ProductList/>
-            </div>
+  const renderProducts = () => {
+    return (<div>
+        {/* <Logout/> */}
+        <ProductList />
+      </div>
 
 
-        );
-    };
-
-    return (
-        <div>
-            {/* Render the products */}
-            {renderProducts()}
-        </div>
     );
+  };
+
+  return (
+    <div>
+      {/* Render the products */}
+      {renderProducts()}
+    </div>
+  );
 }
 
 export default Menu;
