@@ -607,3 +607,17 @@ div {
   margin: 0;
 }
 /* end of reset password */
+
+/* product */
+.rprice {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.mprice {
+    font-size: 9px;
+    font-weight: 900;
+    margin-left: 1.6px;
+  }
+
+/* end of product */
