@@ -7,7 +7,7 @@ function Menu() {
 
     const renderProducts = () => {
         return (<div>
-                <Logout/>
+                {/* <Logout/> */}
                 <ProductList/>
             </div>
 

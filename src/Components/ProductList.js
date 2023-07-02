@@ -5,6 +5,7 @@ import { BACKEND_BASE_URL } from "../Constants/AppConstants";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
@@ -30,6 +31,21 @@ const ProductsList = () => {
 
   return (
     <>
+      <Box sx={{ margin: "21px" }}>
+        <Typography
+          sx={{
+            padding: 0,
+            fontSize: "24px",
+            fontWeight: "bold",
+            lineHeight: "33px",
+            color: "#c5022e",
+            margin: "10px",
+            marginBottom: "50px",
+          }}
+        >
+          Noodles
+        </Typography>
+      </Box>
       <Box sx={{ flexGrow: 1, justifyContent: "space-between" }}>
         <Grid
           container
