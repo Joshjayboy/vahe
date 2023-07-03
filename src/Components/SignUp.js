@@ -7,12 +7,30 @@ import {
   Typography,
   Box,
   Input,
+  withStyles,
 } from "@mui/material";
+
+// import PhoneInput from "react-phone-number-input";
 import { BACKEND_BASE_URL } from "../Constants/AppConstants";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
-function SignUp() {
+import ReactPhoneInput from "react-phone-input-material-ui";
+// import { TextField, withStyles } from "@material-ui/core";
+
+const styles = (theme) => ({
+  field: {
+    margin: "10px 0",
+  },
+  countryList: {
+    ...theme.typography.body1,
+  },
+});
+
+function SignUp(props) {
+  const { value, defaultCountry, onChange, classes } = props;
   const [user, setUser] = useState({
     firstname: "",
     lastname: "",
@@ -49,6 +67,15 @@ function SignUp() {
       setErrorMessage(error.response.data.message);
     }
   };
+
+  const styles = (theme) => ({
+    field: {
+      margin: "10px 0",
+    },
+    countryList: {
+      ...theme.typography.body1,
+    },
+  });
 
   return (
     <>
@@ -95,15 +122,25 @@ function SignUp() {
                 </label>
               </div>
 
-              <div className="form1_4">
-                <input
+              {/* <div className="form1_4"> */}
+              <div className="form1_4_1">
+                <PhoneInput
+                  
                   placeholder="55 22 33"
                   required
                   name="firstname"
                   label="First Name"
                   fullWidth
                   onChange={handleChange}
-                ></input>
+                />
+                {/* <input
+                  placeholder="55 22 33"
+                  required
+                  name="firstname"
+                  label="First Name"
+                  fullWidth
+                  onChange={handleChange}
+                ></input> */}
               </div>
             </div>
 

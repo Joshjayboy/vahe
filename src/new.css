@@ -134,6 +134,7 @@ div {
   font-weight: 400;
   line-height: 1.1876em;
 }
+
 .form1_4 input {
   padding: 9px;
   font-size: 14px;
@@ -615,9 +616,9 @@ div {
 }
 
 .mprice {
-    font-size: 9px;
-    font-weight: 900;
-    margin-left: 1.6px;
-  }
+  font-size: 9px;
+  font-weight: 900;
+  margin-left: 1.6px;
+}
 
 /* end of product */
