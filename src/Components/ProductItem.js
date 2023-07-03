@@ -244,7 +244,8 @@ const ProductItem = ({ product }) => {
             <Dialog
               center
               height="100%"
-              maxWidth="768px"
+               maxWidth="768px"
+              width="768px"
               diplay="flex"
               outline="0"
               open={open}
@@ -252,7 +253,9 @@ const ProductItem = ({ product }) => {
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
             >
-              <DialogTitle sx={{ position: "relative" }}>
+              <DialogTitle
+                sx={{ position: "relative", maxWidth: "768px", width: "768px" }}
+              >
                 <Button
                   sx={{ top: "10px", right: "10px", position: "absolute" }}
                 >
