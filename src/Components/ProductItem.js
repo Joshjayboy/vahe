@@ -236,6 +236,7 @@ const ProductItem = ({ product }) => {
 
           <Modal
             open={open}
+            maxWidth="768px"
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
@@ -243,7 +244,8 @@ const ProductItem = ({ product }) => {
             <Dialog
               center
               height="100%"
-              width="100%"
+              maxWidth="768px"
+              diplay="flex"
               outline="0"
               open={open}
               onClose={handleClose}
@@ -269,81 +271,201 @@ const ProductItem = ({ product }) => {
                   </span>
                 </Button>
               </DialogTitle>
-              <DialogContent>
+              <DialogContent
+                sx={{
+                  flex: "1 1 auto",
+                  padding: "8px 24px",
+                  overflowY: "auto",
+                }}
+              >
                 <Card
                   sx={{
                     display: "flex",
                     marginTop: "-8px",
                     marginBottom: "-8px",
+                    overflow: "hidden",
+                    boxShadow: "none",
+                    borderRadius: "10px",
+                    color: "#424242",
+                    transition:
+                      "box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+                    backgroundColor: "#fff",
                   }}
                 >
-                  <CardMedia>
-                    the image here
-                    <CardContent
+                  <CardMedia
+                    sx={{
+                      width: "60%",
+                      height: "300px",
+                      position: "relative",
+                      borderTopRightRadius: "10px",
+                      borderBottomRightRadius: "10px",
+                      borderTopRightRadius: "10px",
+                      display: "block",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                    }}
+                    style={{
+                      backgroundImage:
+                        "url(	https://menu.am/resources/default/img/restaurant_products/big/1676552548580-2653.jpg)",
+                    }}
+                  >
+                    <Box
+                      component="span"
                       sx={{
-                        width: "calc(100% - 150px",
-                        position: "relative",
-                        minHeight: "100%",
-                        paddingTop: "0",
-                        paddingRight: "0!important",
-                        paddingBottom: "0!important",
+                        right: "8.8px",
+                        cursor: "pointer",
+                        position: "absolute",
                       }}
                     >
-                      <a sx={{ color: "#000", textDecoration: "none" }}>
-                        <picture>
-                          <img
-                            alt="image"
-                            src="	https://menu.am/resources/default/img/restaurants/big/1676525821737-2653.jpg"
-                          />
-                        </picture>
-                        <span sx={{}}>Made in China</span>
-                      </a>
-                      <Box sx={{ fontWeight: "bold", paddinBottom: "8px" }}>
-                        Pad Thai
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 20.483 18.921"
+                      >
+                        <path
+                          d="M9.717,17.815c18.469-12.169,6.023-22.376,0-15.7C3.695-4.561-8.752,5.645,9.717,17.815Z"
+                          transform="translate(0.524 0.507)"
+                          fill="none"
+                          stroke="#ea1f4d"
+                          stroke-width="1"
+                          fill-rule="evenodd"
+                        ></path>
+                      </svg>
+                    </Box>
+                  </CardMedia>
+                  <CardContent
+                    sx={{
+                      width: "calc(100% - 150px)",
+                      position: "relative",
+                      minHeight: "100%",
+                      paddingTop: "0",
+                      paddingRight: "0!important",
+                      paddingBottom: "0!important",
+                      padding: "16px",
+                    }}
+                  >
+                    <a sx={{ color: "#000", textDecoration: "none" }}>
+                      <picture>
+                        <img
+                          sx={{
+                            width: "32px",
+                            height: "auto",
+                            objectFit: "cover",
+                            lineHeight: 0,
+                            marginRight: "8px",
+                            verticalAligh: "middle",
+                          }}
+                          alt="image"
+                          src="	https://menu.am/resources/default/img/restaurants/big/1676525821737-2653.jpg"
+                        />
+                      </picture>
+                      <span sx={{}}>Made in China</span>
+                    </a>
+                    <Box sx={{ fontWeight: "bold", paddinBottom: "8px" }}>
+                      Pad Thai
+                    </Box>
+                    <Box
+                      sx={{
+                        width: "calc(100% - 16px)",
+                        bottom: 0,
+                        display: "flex",
+                        position: "absolute",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <Box sx={{ marginTop: "4px", marginBottom: "4px" }}>
+                        <Box
+                          component="span"
+                          sx={{ fontSize: "20px", fontWeight: 900 }}
+                        >
+                          2800
+                        </Box>
+                        <Box
+                          component="span"
+                          sx={{
+                            fontSize: "15px",
+                            fontWeight: 900,
+                            marginLeft: "1.6px",
+                          }}
+                        >
+                          AMD
+                        </Box>
                       </Box>
+
                       <Box
                         sx={{
-                          width: "calc(100% - 16px)",
-                          bottom: 0,
                           display: "flex",
-                          position: "absolute",
-                          flexDirection: "column",
+                          maxWidth: "120px",
+                          boxSizing: "border-box",
                         }}
                       >
-                        <Box
+                        <Button
                           sx={{
-                            color: "rgba(54, 54, 54, 0.72)",
-                            fontSize: "18px",
-                            fontWeight: "bold",
-                          }}
-                        >
-                          <span sx={{ fontSize: "18px", fontWeight: "bold" }}>
-                            1.99
-                          </span>
-                          <span>AMD</span>
-                        </Box>
-
-                        <Box
-                          sx={{
-                            display: "flex",
-                            maxWidth: "120px",
+                            padding: "4.5px 13.12px",
+                            background: "#E7E7E7",
+                            borderRadius: "30px",
+                            border: "none",
+                            margin: 0,
+                            dispaly: "inline-flex",
+                            outline: 0,
+                            position: "relative",
                             boxSizing: "border-box",
+                            transition:
+                              "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+                            alignItems: "center",
+                            verticalAlign: "middle",
+                            justifyContent: "center",
+                            textDecoration: "none",
                           }}
                         >
-                          <Button>-</Button>
-                          <TextField>1</TextField>
-                          <Button>+</Button>
-                        </Box>
+                          -
+                        </Button>
+                        <div sx={{ overflow: "hidden", maxWidth: "40px" }}>
+                          <Input
+                            sx={{
+                              width: "100%",
+                              border: "none",
+                              margin: 0,
+                              outline: 0,
+                              padding: "3px",
+                              boxSizing: "border-box",
+                              textAlign: "center",
+                              value: "1",
+                            }}
+                          >
+                            1
+                          </Input>
+                        </div>
+                        <Button
+                          sx={{
+                            padding: "4.5px 13.12px",
+                            background: "#E7E7E7",
+                            borderRadius: "30px",
+                            border: "none",
+                            margin: 0,
+                            dispaly: "inline-flex",
+                            outline: 0,
+                            position: "relative",
+                            boxSizing: "border-box",
+                            transition:
+                              "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+                            alignItems: "center",
+                            verticalAlign: "middle",
+                            justifyContent: "center",
+                            textDecoration: "none",
+                          }}
+                        >
+                          +
+                        </Button>
                       </Box>
-                    </CardContent>
-                  </CardMedia>
+                    </Box>
+                  </CardContent>
                 </Card>
 
                 <Box sx={{ fontSize: "16px", marginTop: "24px" }}>
                   This is the description about the modal
-                </Box>
-                <Box sx={{ marginTop: "16px" }}>
-                  <Typography>Addition</Typography>
                 </Box>
 
                 <Box
@@ -353,22 +475,51 @@ const ProductItem = ({ product }) => {
                     justifyContent: "center",
                   }}
                 >
-                  <Box>
+                  <Box sx={{ width: "100%" }}>
                     <Input
                       sx={{
-                        width: "100px",
+                        width: "100%",
+                        height: "76px",
                         border: "1px solid #e3e3e3",
                         borderRadius: "10px",
                         backgroundColor: "#fff",
+                        padding: "6px 0 7px",
+                        color: "#424242",
                       }}
                     >
-                      {" "}
                       Your comment goes here
                     </Input>
                   </Box>
                 </Box>
               </DialogContent>
-              <DialogActions></DialogActions>
+              <DialogActions
+                sx={{ paddingBottom: "32px", justifyContent: "center" }}
+              >
+                <Box sx={{ marginTop: "16%" }}>
+                  <Button
+                    sx={{
+                      color: "#fff",
+                      background:
+                        "transparent linear-gradient(180deg, #c5022e 0%, #ea1f4d 100%) 0% 0% no-repeat",
+                      padding: "10px 18px",
+                      fontWeight: "bold",
+                      lineHeight: "22px",
+                      textTransform: "inherit",
+                    }}
+                  >
+                    <span
+                      sx={{
+                        width: "100%",
+                        display: "inherit",
+                        alignItems: "inherit",
+                        justifyContent: "inherit",
+                      }}
+                    >
+                      Add to Cart
+                    </span>
+                  </Button>
+                </Box>
+              </DialogActions>
             </Dialog>
             {/* <Box sx={style}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
