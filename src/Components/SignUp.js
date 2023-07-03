@@ -125,7 +125,12 @@ function SignUp(props) {
               {/* <div className="form1_4"> */}
               <div className="form1_4_1">
                 <PhoneInput
-                  
+                  style={{
+                    border: "1px solid #cccccc",
+                    borderRadius: "10px",
+                    backgroundColor: " #ffffff",
+                   outline:"none"
+                  }}
                   placeholder="55 22 33"
                   required
                   name="firstname"
