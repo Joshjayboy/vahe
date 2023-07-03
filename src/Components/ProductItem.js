@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 // import Modal from "react-modal";
-import { styled } from "@mui/material/styles";
+// import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
-import { TextField, Input } from "@mui/material";
+
+import TextareaAutosize from "@mui/base/TextareaAutosize";
+
+import { styled } from "@mui/system";
+import { Input, InputBase } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Item from "@mui/material";
 import CardHeader from "@mui/material/CardHeader";
@@ -44,17 +48,63 @@ const ProductItem = ({ product }) => {
     setModalOpen(false);
   };
 
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
+  const blue = {
+    100: "#DAECFF",
+    200: "#b6daff",
+    400: "#3399FF",
+    500: "#007FFF",
+    600: "#0072E5",
+    900: "#003A75",
   };
+
+  const grey = {
+    50: "#f6f8fa",
+    100: "#eaeef2",
+    200: "#d0d7de",
+    300: "#afb8c1",
+    400: "#8c959f",
+    500: "#6e7781",
+    600: "#57606a",
+    700: "#424a53",
+    800: "#32383f",
+    900: "#24292f",
+  };
+
+  const StyledTextarea = styled(TextareaAutosize)(
+    ({ theme }) => `
+    width: 100%;
+    resize: none;
+    font-family: IBM Plex Sans, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 12px;
+    border-radius: 12px;
+    color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
+    background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
+    border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+    box-shadow: 0px 2px 2px ${
+      theme.palette.mode === "dark" ? grey[900] : grey[50]
+    };
+   
+  
+    &:hover {
+      border-color: ${blue[400]};
+    }
+  
+    &:focus {
+      border-color: ${blue[400]};
+      box-shadow: 0 0 0 3px ${
+        theme.palette.mode === "dark" ? blue[500] : blue[200]
+      };
+    }
+  
+    // firefox
+    &:focus-visible {
+      outline: 0;
+    }
+  `
+  );
 
   return (
     <>
@@ -244,7 +294,7 @@ const ProductItem = ({ product }) => {
             <Dialog
               center
               height="100%"
-               maxWidth="768px"
+              maxWidth="768px"
               width="768px"
               diplay="flex"
               outline="0"
@@ -284,8 +334,8 @@ const ProductItem = ({ product }) => {
                 <Card
                   sx={{
                     display: "flex",
-                    marginTop: "-8px",
-                    marginBottom: "-8px",
+                    marginTop: "8px",
+                    marginBottom: "8px",
                     overflow: "hidden",
                     boxShadow: "none",
                     borderRadius: "10px",
@@ -346,27 +396,30 @@ const ProductItem = ({ product }) => {
                       paddingTop: "0",
                       paddingRight: "0!important",
                       paddingBottom: "0!important",
-                      padding: "16px",
                     }}
                   >
-                    <a sx={{ color: "#000", textDecoration: "none" }}>
+                    <a
+                      href="/restaurants/2653"
+                      style={{ color: "#000", textDecoration: "none" }}
+                    >
                       <picture>
                         <img
-                          sx={{
-                            width: "32px",
-                            height: "auto",
-                            objectFit: "cover",
-                            lineHeight: 0,
-                            marginRight: "8px",
-                            verticalAligh: "middle",
-                          }}
                           alt="image"
                           src="	https://menu.am/resources/default/img/restaurants/big/1676525821737-2653.jpg"
+                          height="auto"
+                          width="64px"
                         />
                       </picture>
-                      <span sx={{}}>Made in China</span>
+                      <span>Made in China</span>
                     </a>
-                    <Box sx={{ fontWeight: "bold", paddinBottom: "8px" }}>
+                    <Box
+                      sx={{
+                        fontWeight: "bold",
+                        paddingBottom: "8px",
+                        paddingTop: "8px",
+                        fontSize: "20px",
+                      }}
+                    >
                       Pad Thai
                     </Box>
                     <Box
@@ -402,25 +455,22 @@ const ProductItem = ({ product }) => {
                           display: "flex",
                           maxWidth: "120px",
                           boxSizing: "border-box",
+                          fontSize: "16px",
                         }}
                       >
                         <Button
-                          sx={{
-                            padding: "4.5px 13.12px",
-                            background: "#E7E7E7",
-                            borderRadius: "30px",
+                          fontSize="16px"
+                          // padding="4.5px 13.12px"
+                          style={{
+                            padding: "3px 13.12px",
                             border: "none",
                             margin: 0,
+                            boxSizing: "border-box",
+                            fontSize: "16px",
                             dispaly: "inline-flex",
                             outline: 0,
                             position: "relative",
-                            boxSizing: "border-box",
-                            transition:
-                              "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-                            alignItems: "center",
-                            verticalAlign: "middle",
-                            justifyContent: "center",
-                            textDecoration: "none",
+                            borderRadius: "30px",
                           }}
                         >
                           -
@@ -468,7 +518,8 @@ const ProductItem = ({ product }) => {
                 </Card>
 
                 <Box sx={{ fontSize: "16px", marginTop: "24px" }}>
-                  This is the description about the modal
+                  420g, chicken breast, egg noodles, bell pepper, celery, onion,
+                  sesame, green onion, Chow Maine sauce, not spicy
                 </Box>
 
                 <Box
@@ -478,27 +529,19 @@ const ProductItem = ({ product }) => {
                     justifyContent: "center",
                   }}
                 >
-                  <Box sx={{ width: "100%" }}>
-                    <Input
-                      sx={{
-                        width: "100%",
-                        height: "76px",
-                        border: "1px solid #e3e3e3",
-                        borderRadius: "10px",
-                        backgroundColor: "#fff",
-                        padding: "6px 0 7px",
-                        color: "#424242",
-                      }}
-                    >
-                      Your comment goes here
-                    </Input>
+                  <Box sx={{ width: "80%" }}>
+                    <StyledTextarea
+                      aria-label="minimum height"
+                      minRows={4}
+                      placeholder="Your comment to the order"
+                    />
                   </Box>
                 </Box>
               </DialogContent>
               <DialogActions
                 sx={{ paddingBottom: "32px", justifyContent: "center" }}
               >
-                <Box sx={{ marginTop: "16%" }}>
+                <Box sx={{ marginTop: "16px" }}>
                   <Button
                     sx={{
                       color: "#fff",
