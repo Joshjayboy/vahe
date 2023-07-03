@@ -72,12 +72,41 @@ const ProductItem = ({ product }) => {
           >
             <CardMedia sx={{ display: "flex" }} />
             {product.imageUrl && (
-              <img
-                src={product.imageUrl}
-                alt={product.name}
-                height="256px"
-                width="256px"
-              ></img>
+              <Typography style={{ position: "relative" }}>
+                <img
+                  src={product.imageUrl}
+                  alt={product.name}
+                  height="256px"
+                  width="256px"
+                  //   position="relative"
+                />
+                <Box
+                  sx={{
+                    top: "10px",
+                    right: "10px",
+                    width: "24px",
+                    cursor: "pointer",
+                    height: "24px",
+                    position: "absolute",
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 20.483 18.921"
+                  >
+                    <path
+                      d="M9.717,17.815c18.469-12.169,6.023-22.376,0-15.7C3.695-4.561-8.752,5.645,9.717,17.815Z"
+                      transform="translate(0.524 0.507)"
+                      fill="none"
+                      stroke="#ea1f4d"
+                      strokeWidth="1"
+                      fillRule="evenodd"
+                    ></path>
+                  </svg>
+                </Box>
+              </Typography>
             )}
 
             <CardContent sx={{ padding: "16px" }}>
@@ -106,28 +135,33 @@ const ProductItem = ({ product }) => {
                   justifyContent: "space-between",
                 }}
               >
-                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <CardActions sx={{ display: "flex" }}>
                   <Box sx={{ lineHeight: "14px" }}>
                     <Box
                       sx={{
-                        fontSize: "14px",
-                        fontWeight: 900,
                         color: "#424242",
                       }}
                     >
-                      {product.price}
-                    </Box>
-                    <Box
-                      sx={{
-                        fontSize: "9px",
-                        fontWeight: 900,
-                        marginLeft: "1.6px",
-                      }}
-                    >
-                      AMD
+                      <IconButton
+                        sx={{
+                          fontSize: "14px",
+                          fontWeight: 900,
+                        }}
+                      >
+                        {product.price}
+                      </IconButton>
+                      <IconButton
+                        sx={{
+                          fontSize: "9px",
+                          fontWeight: 900,
+                          //   marginLeft: "1.6px",
+                        }}
+                      >
+                        AMD
+                      </IconButton>
                     </Box>
                   </Box>
-                </Box>
+                </CardActions>
                 <Box sx={{ cursor: "pointer" }}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
