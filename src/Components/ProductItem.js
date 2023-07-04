@@ -303,15 +303,17 @@ const ProductItem = ({ product }) => {
               aria-labelledby="alert-dialog-title"
               aria-describedby="alert-dialog-description"
             >
-              <DialogTitle
-                sx={{ position: "relative" }}
-              >
+              <DialogTitle sx={{ position: "relative" }}>
                 <Button
+                  type="button"
+                  onClick={handleClose}
                   sx={{
                     top: "10px",
                     right: "10px",
                     position: "absolute",
                     overflowX: "hidden",
+                    // onClick: { handleClose },
+                    // onClose: { handleClose },
                   }}
                 >
                   <span>
