@@ -43,6 +43,7 @@ function SignUp(props) {
 
   const navigate = useNavigate();
 
+  const [number, setNumber] = useState();
   const handleChange = (e) => {
     setUser({
       ...user,
@@ -129,23 +130,17 @@ function SignUp(props) {
                     border: "1px solid #cccccc",
                     borderRadius: "10px",
                     backgroundColor: " #ffffff",
-                   outline:"none"
+                    outline: "none",
                   }}
                   placeholder="55 22 33"
                   required
                   name="firstname"
                   label="First Name"
                   fullWidth
-                  onChange={handleChange}
+                  value={number}
+                  onChange={setNumber}
+                  // onChange={handleChange}
                 />
-                {/* <input
-                  placeholder="55 22 33"
-                  required
-                  name="firstname"
-                  label="First Name"
-                  fullWidth
-                  onChange={handleChange}
-                ></input> */}
               </div>
             </div>
 

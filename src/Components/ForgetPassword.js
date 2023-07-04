@@ -287,16 +287,13 @@ const ChangePasswordForm = ({
                 fontSize: "14px",
               }}
             >
-              {/* <div className="form1_1"> */}
               <div className="form1_1">
                 <div className="form1_2">
-                  {/* <div className="form1_2"> */}
                   <label>
                     <span>New Password</span>
                   </label>
                 </div>
 
-                {/* <div className="form1_4"> */}
                 <div className="form1_4">
                   <input
                     variant="outlined"
