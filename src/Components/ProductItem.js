@@ -304,10 +304,15 @@ const ProductItem = ({ product }) => {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle
-                sx={{ position: "relative", maxWidth: "768px", width: "768px" }}
+                sx={{ position: "relative" }}
               >
                 <Button
-                  sx={{ top: "10px", right: "10px", position: "absolute" }}
+                  sx={{
+                    top: "10px",
+                    right: "10px",
+                    position: "absolute",
+                    overflowX: "hidden",
+                  }}
                 >
                   <span>
                     <svg
@@ -329,6 +334,7 @@ const ProductItem = ({ product }) => {
                   flex: "1 1 auto",
                   padding: "8px 24px",
                   overflowY: "auto",
+                  overflowX: "hidden",
                 }}
               >
                 <Card
@@ -541,16 +547,19 @@ const ProductItem = ({ product }) => {
               <DialogActions
                 sx={{ paddingBottom: "32px", justifyContent: "center" }}
               >
-                <Box sx={{ marginTop: "16px" }}>
+                <Box sx={{ marginTop: "16px", width: "60%" }}>
                   <Button
                     sx={{
                       color: "#fff",
+                      width: "100%",
+                      boxShadow: "none",
                       background:
                         "transparent linear-gradient(180deg, #c5022e 0%, #ea1f4d 100%) 0% 0% no-repeat",
                       padding: "10px 18px",
                       fontWeight: "bold",
                       lineHeight: "22px",
                       textTransform: "inherit",
+                      borderRadius: "10px",
                     }}
                   >
                     <span
