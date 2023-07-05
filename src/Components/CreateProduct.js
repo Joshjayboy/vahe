@@ -3,7 +3,8 @@ import {Button, Grid, TextField, Typography} from '@material-ui/core';
 import {BACKEND_BASE_URL} from "../Constants/AppConstants";
 import {useNavigate} from "react-router-dom";
 
-export const HandleImageUpdate = () => {}
+export const HandleImageUpdate = () => {
+}
 
 function CreateProduct() {
     const [isProductCreated, setProductCreated] = useState(false);

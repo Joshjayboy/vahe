@@ -1,7 +1,7 @@
 import {Box, Button, TextField} from "@mui/material";
 import React from "react";
 
-const VerifyOTPForm = ({onSubmit, otpCode, setOtpCode}) => (
+const VerifyOTPForm = ({onSubmit, otpCode, setOtpCode, email}) => (
     <>
         <Box container sx={{minHeight: "600px", marginTop: "100px"}}>
             <Box
@@ -35,7 +35,7 @@ const VerifyOTPForm = ({onSubmit, otpCode, setOtpCode}) => (
                             fontWeight: "bold",
                         }}
                     >
-                        jakintemi@gmail.com
+                        {email}
                     </Box>
                     <Box
                         sx={{

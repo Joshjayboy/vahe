@@ -83,6 +83,7 @@ const ForgetPassword = () => {
                         onSubmit={verifyOtp}
                         otpCode={otpCode}
                         setOtpCode={setOtpCode}
+                        email={email}
                     />
                 )}
                 {otpCorrect && (

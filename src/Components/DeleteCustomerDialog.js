@@ -1,7 +1,7 @@
 import React from 'react';
-import { Dialog, DialogActions, DialogContent, DialogContentText, Button } from '@material-ui/core';
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText} from '@material-ui/core';
 
-function DeleteConfirmDialog({ open, onClose, onConfirm }) {
+function DeleteConfirmDialog({open, onClose, onConfirm}) {
     return (
         <Dialog
             open={open}

@@ -1,6 +1,5 @@
 import React from 'react';
 import ProductList from "../Components/ProductList";
-import Logout from "../Components/Logout";
 
 function Menu() {
     // test modal

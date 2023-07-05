@@ -3,11 +3,8 @@ import axios from "axios";
 import {Alert, Box, Button, Typography,} from "@mui/material";
 import {Link, Navigate} from "react-router-dom";
 import {BACKEND_BASE_URL} from "../Constants/AppConstants";
+import {validateEmail} from "../Components/Util/GlobalValidation";
 
-const validateEmail = (email) => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-};
 
 const LoginForm = () => {
     const [username, setUsername] = React.useState("");

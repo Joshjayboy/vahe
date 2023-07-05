@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button } from '@material-ui/core';
+import React, {useEffect, useState} from 'react';
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from '@material-ui/core';
 import axios from 'axios';
-import { BACKEND_BASE_URL } from "../Constants/AppConstants";
+import {BACKEND_BASE_URL} from "../Constants/AppConstants";
 
-const EditCustomerDialog = ({ open, handleClose, customer, setUpdatedCustomer , handleUpdate}) => {
+const EditCustomerDialog = ({open, handleClose, customer, setUpdatedCustomer, handleUpdate}) => {
     const [editingCustomer, setEditingCustomer] = useState(null);
 
     useEffect(() => {

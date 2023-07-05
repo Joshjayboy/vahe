@@ -29,15 +29,14 @@ const SendOTPForm = ({
                 </div>
 
                 <div className="form1_4">
-                    <input
-                        label="Email is here"
+                    <TextField
                         type="email"
-                        variant="outlined"
+                        variant="standard"
                         fullWidth
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                    ></input>
+                    />
                 </div>
             </div>
         </div>
@@ -46,25 +45,26 @@ const SendOTPForm = ({
             <div className="form1_1">
                 <div className="form1_2">
                     <label>
-                        <span>Email address or mobile number</span>
+                        <span>Verification type</span>
                     </label>
                 </div>
                 <div className="form1_4">
                     <TextField
                         select
+                        variant="standard"
                         fullWidth
                         value={verificationType}
                         onChange={(e) => setVerificationType(e.target.value)}
+                        placeholder="Select Verification Type"
                         required
                     >
-                        <MenuItem value="">Select Verification Type</MenuItem>
                         <MenuItem value="SMS">SMS</MenuItem>
                         <MenuItem value="EMAIL">Email</MenuItem>
                     </TextField>
                 </div>
             </div>
             <div className="sign1">
-                <button className="sign2" type="submit" variant="contained">
+                <button className="sign2" type="submit">
                     <span>Send verification code</span>
                 </button>
             </div>
