@@ -6,8 +6,6 @@ import axios from "axios";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import { validateEmail } from "./Util/GlobalValidation";
-import { MuiTelInput } from "mui-tel-input";
-import MuiPhoneNumber from "material-ui-phone-number";
 
 import IconButton from "@mui/material/IconButton";
 import Input from "@mui/material/Input";
@@ -22,6 +20,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function SignUp() {
+  const [isError, setIsError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -37,12 +36,12 @@ function SignUp() {
 
   const handleClickShowPasswordd = () => setShowPasswordd((show) => !show);
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
+  // const validatePassword = () => {
+  //   return password === confirmPassword;
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const payload = {
         email,
@@ -63,6 +62,16 @@ function SignUp() {
     }
   };
 
+  const isSubmitDisabled = password !== confirmPassword;
+  const checkValidation = (e) => {
+    const confPass = e.target.value;
+    setConfirmPassword(confPass);
+    if (password != confPass) {
+      setIsError("Password and confirm password should be same");
+    } else {
+      setIsError("");
+    }
+  };
   return (
     <>
       <Box sx={{ display: "flex" }}>
@@ -101,93 +110,6 @@ function SignUp() {
           <form onSubmit={handleSubmit} className="form1">
             {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
 
-            {/* <div className="form1_1"> */}
-            <div>
-              {/* <div className="form1_2">
-                <label>
-                  <span>Phone number</span>
-                </label>
-              </div> */}
-
-              {/* <div className="form1_4_1"> */}
-              {/* <div>
-                <PhoneInput
-                  style={{
-                    border: "1px solid #cccccc",
-                    borderRadius: "10px",
-                    backgroundColor: " #ffffff",
-                    outline: "none",
-                  }}
-                  // placeholder="55 22 33"
-                  // required
-                  // name="phoneNumber"
-                  // label="phone"
-                  // fullWidth
-                  value={phoneNumber}
-                  // onChange={handleOnChange}
-                  onChange={(e) => setPhoneNumber(e)}
-                />
-              </div> */}
-            </div>
-
-            {/* <div className="form1_1">
-              <div className="form1_2">
-                <label>
-                  <span>Email Address</span>
-                </label>
-              </div>
-
-              <div className="form1_4">
-                <input
-                  placeholder="Enter your email address"
-                  required
-                  name="email"
-                  label="email"
-                  fullWidth
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    validateEmail(email);
-                  }}
-                  className="form1_5"
-                ></input>
-              </div>
-            </div> */}
-
-            {/* <div className="form1_1">
-              <div className="form1_2">
-                <label>
-                  <span>Password</span>
-                </label>
-              </div>
-
-              <div className="form1_4">
-                <input
-                  placeholder="Enter your password"
-                  required
-                  name="password"
-                  label="password"
-                  type="password"
-                  fullWidth
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                  className="form1_5"
-                ></input>
-                <div>
-                  <button className="input2">
-                    <span className="input3">
-                      <picture>
-                        <img
-                          alt="image"
-                          src="https://menu.am/images/icons/eye-closed.png"
-                        />
-                      </picture>
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div> */}
-
             <Box mt={2} mb={2} sx={{ flexWrap: "wrap", width: "100%" }}>
               <div>
                 <div className="form1_2">
@@ -196,10 +118,9 @@ function SignUp() {
                   </label>
                 </div>
                 <FormControl sx={{ width: "100%" }}>
-                  {/* <InputLabel htmlFor="outlined-adornment-password">
-                Password
-              </InputLabel> */}
                   <PhoneInput
+                    placeholder="55 22 33 44"
+                    required
                     style={{
                       border: "1px solid #cccccc",
                       borderRadius: "10px",
@@ -260,7 +181,6 @@ function SignUp() {
                 </div>
                 <FormControl sx={{ width: "100%" }}>
                   <OutlinedInput
-                    outline="none"
                     placeholder="Enter your password"
                     required
                     name="password"
@@ -275,21 +195,18 @@ function SignUp() {
                       outline: "none",
                       backgroundColor: "#ffffff",
                     }}
-                    // id="outlined-adornment-password"
                     type={showPassword ? "text" : "password"}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
-                          // onMouseDown={handleMouseDownPassword}
                           edge="end"
                         >
                           {showPassword ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                       </InputAdornment>
                     }
-                    // label="Password"
                   />
                 </FormControl>
               </div>
@@ -303,78 +220,44 @@ function SignUp() {
                   </label>
                 </div>
                 <FormControl sx={{ width: "100%" }}>
-                  {/* <InputLabel htmlFor="outlined-adornment-password">
-                Password
-              </InputLabel> */}
                   <OutlinedInput
                     outline="none"
                     placeholder="Confirm your password"
                     required
                     name="Confirm password"
-                    // label="password"
                     className="form1_4"
-                    onChange={(e) => {
-                      setConfirmPassword(e.target.value);
-                    }}
+                    onChange={(e) => checkValidation(e)}
+                    // onChange={(e) => {
+                    //   setConfirmPassword(e.target.value);
+                    // }}
                     sx={{
                       borderRadius: "10px",
                       border: "1px solid #cccccc",
                       outline: "none",
                       backgroundColor: " #ffffff",
                     }}
-                    // id="outlined-adornment-password"
                     type={showPasswordd ? "text" : "password"}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPasswordd}
-                          // onMouseDown={handleMouseDownPassword}
                           edge="end"
                         >
                           {showPasswordd ? <VisibilityOff /> : <Visibility />}
                         </IconButton>
                       </InputAdornment>
                     }
-                    // label="Password"
                   />
+                  {isError}
+                  {/* {validatePassword() ? (
+                    <p>Passwords match</p>
+                  ) : (
+                    <p>Passwords do not match</p>
+                  )} */}
                 </FormControl>
               </div>
             </Box>
-
-            {/* <div className="form1_1">
-              <div className="form1_2">
-                <label>
-                  <span>Confirm Password</span>
-                </label>
-              </div>
-
-              <div className="form1_4">
-                <input
-                  placeholder="Confirm your password"
-                  required
-                  name="confirmPassword"
-                  label="confirmPassword"
-                  type="password"
-                  fullWidth
-                  onChange={(e) => {
-                    setConfirmPassword(e.target.value);
-                  }}
-                ></input>
-                <div>
-                  <button className="input2">
-                    <span className="input3">
-                      <picture>
-                        <img
-                          alt="image"
-                          src="https://menu.am/images/icons/eye-closed.png"
-                        />
-                      </picture>
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div> */}
 
             <div className="sign1">
               <button className="sign2">

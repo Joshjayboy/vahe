@@ -133,6 +133,7 @@ const LoginForm = () => {
                 sx={{
                   borderRadius: "10px",
                   border: "1px solid #cccccc",
+
                   color: "#ffffff",
                 }}
                 // id="outlined-adornment-password"
@@ -151,7 +152,6 @@ const LoginForm = () => {
             </div>
             <FormControl sx={{ width: "100%" }}>
               <OutlinedInput
-                outline="none"
                 placeholder="Enter your password"
                 required
                 name="password"
@@ -162,7 +162,6 @@ const LoginForm = () => {
                 sx={{
                   borderRadius: "10px",
                   border: "1px solid #cccccc",
-                  outline: "none",
                   color: "#ffffff",
                 }}
                 // id="outlined-adornment-password"
