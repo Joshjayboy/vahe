@@ -192,7 +192,7 @@ const LoginForm = () => {
           </Link>
         </Box>
         <div className="sign1">
-          <button className="sign2">
+          <button className="sign2" onClick={handleSubmit}>
             <span>Sign In</span>
           </button>
         </div>

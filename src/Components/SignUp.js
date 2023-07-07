@@ -36,9 +36,6 @@ function SignUp() {
 
   const handleClickShowPasswordd = () => setShowPasswordd((show) => !show);
 
-  // const validatePassword = () => {
-  //   return password === confirmPassword;
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -122,10 +119,10 @@ function SignUp() {
                     placeholder="55 22 33 44"
                     required
                     style={{
+                      borderRadius: "10px",
                       border: "1px solid #cccccc",
                       borderRadius: "10px",
                       backgroundColor: " #ffffff",
-                      outline: "none",
                     }}
                     // placeholder="55 22 33"
                     // required
@@ -250,11 +247,6 @@ function SignUp() {
                     }
                   />
                   {isError}
-                  {/* {validatePassword() ? (
-                    <p>Passwords match</p>
-                  ) : (
-                    <p>Passwords do not match</p>
-                  )} */}
                 </FormControl>
               </div>
             </Box>
