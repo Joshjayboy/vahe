@@ -155,7 +155,7 @@ div {
   height: 100%;
   border: 1px solid #cccccc;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: #020101;
   color: #424242;
   cursor: text;
   display: inline-flex;
@@ -382,7 +382,7 @@ div {
 .face5 {
   margin-left: 8px;
 }
-
+/* 
 .goo1 {
   margin-top: 24px;
 }
@@ -515,7 +515,7 @@ div {
   color: #c70430;
   text-decoration: none;
   margin: 0;
-}
+} */
 
 /* end of login */
 
@@ -678,3 +678,9 @@ div {
 }
 
 /* end of product */
+
+@media (max-width: 600px) {
+  .disimage {
+    display: none;
+  }
+}
