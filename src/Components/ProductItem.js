@@ -97,7 +97,8 @@ const ProductItem = ({ product }) => {
   return (
     <>
       <Grid
-        container
+       root
+       item
         spacing={2}
         xs={6}
         sm={6}

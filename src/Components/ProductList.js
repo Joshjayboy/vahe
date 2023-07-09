@@ -13,6 +13,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
+import Container from "@mui/material/Container";
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState('');
@@ -76,7 +77,104 @@ const ProductsList = () => {
   return (
     <>
       <Logout />
+      {/* mine start */}
+      <Box sx={{ minHeight: "600px" }}>
+        <Box
+          sx={{
+            "@media (min-width: 768px)": {
+              paddingTop: "40px",
+              paddingBottom: "40px",
+            },
+            "@media (min-width: 0px)": {
+              paddingTop: "8px",
+              paddingBottom: "8px",
+            },
+          }}
+        >
+          <Container
+            root
+            maxWidthXl
+            sx={{
+              "@media (min-width: 768px)": {
+                paddingLeft: "24px",
+                paddingRight: "24px",
+              },
+            }}
+          >
+            <Grid
+              root
+              container
+              spacing={2}
+              sx={{ justifyContent: "space-around" }}
+            >
+              <Grid root item xs={12} sm={8} md={8} lg={3} xl={3} />
+              <Grid root item xs={12} sm={8} md={8} lg={9} xl={9}>
+                <div>
+                  <div style={{ height: "auto", overflow: "visible" }}>
+                    <Box
+                      sx={{
+                        borderBottom: "2px solid #e3e3e3",
+                        marginBottom: "40px",
+                        paddingBottom: "40px",
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          flexGrow: 1,
+                          justifyContent: "space-between",
+                          marginBottom: "21px",
+                        }}
+                      >
+                        {Object.entries(productsByCategory).map(
+                          ([category, products]) => {
+                            products = filterProducts(products);
+                            if (products.length === 0) return null;
 
+                            return (
+                              <Box key={category} sx={{ margin: "21px" }}>
+                                <Typography
+                                  component="h2"
+                                  sx={{
+                                    padding: 0,
+                                    fontSize: "24px",
+                                    fontWeight: "bold",
+                                    lineHeight: "33px",
+                                    color: "#c5022e",
+                                    margin: "10px",
+                                    marginBottom: "50px",
+                                  }}
+                                >
+                                  {category}
+                                </Typography>
+
+                                <Grid
+                                  root
+                                  container
+                                  spacing={{ xs: 5 }}
+                                  // columns={{ xs: 4, sm: 8, md: 12 }}
+                                  sx={{ justifyContent: "space-around" }}
+                                >
+                                  {products.map((product) => (
+                                    <ProductItem
+                                      key={product.id}
+                                      product={product}
+                                    />
+                                  ))}
+                                </Grid>
+                              </Box>
+                            );
+                          }
+                        )}
+                      </Box>
+                    </Box>
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+          </Container>
+        </Box>
+      </Box>
+      {/* mine end */}
       <Box>
         {/* Search input */}
         <Box sx={{ display: 'flex', alignItems: 'center', margin: '21px' }}>
