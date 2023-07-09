@@ -119,7 +119,11 @@ const ProductsList = () => {
                       }}
                     >
                       <Box
-                        sx={{ flexGrow: 1, justifyContent: "space-between" }}
+                        sx={{
+                          flexGrow: 1,
+                          justifyContent: "space-between",
+                          marginBottom: "21px",
+                        }}
                       >
                         {Object.entries(productsByCategory).map(
                           ([category, products]) => {
@@ -129,6 +133,7 @@ const ProductsList = () => {
                             return (
                               <Box key={category} sx={{ margin: "21px" }}>
                                 <Typography
+                                  component="h2"
                                   sx={{
                                     padding: 0,
                                     fontSize: "24px",
@@ -143,9 +148,11 @@ const ProductsList = () => {
                                 </Typography>
 
                                 <Grid
+                                  root
                                   container
-                                  spacing={{ xs: 2, md: 3 }}
-                                  columns={{ xs: 4, sm: 8, md: 12 }}
+                                  spacing={{ xs: 5 }}
+                                  // columns={{ xs: 4, sm: 8, md: 12 }}
+                                  sx={{ justifyContent: "space-around" }}
                                 >
                                   {products.map((product) => (
                                     <ProductItem
