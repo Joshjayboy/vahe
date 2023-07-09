@@ -78,7 +78,7 @@ const ProductsList = () => {
     <>
       <Logout />
       {/* mine start */}
-      <Box sx={{ minHeight: "600px" }}>
+      <Box sx={{ minHeight: "600px", marginTop: "30px" }}>
         <Box
           sx={{
             "@media (min-width: 768px)": {
@@ -91,9 +91,9 @@ const ProductsList = () => {
             },
           }}
         >
-          <Container
-            root
-            maxWidthXl
+          <Grid
+            spacing={2}
+            // maxWidthXl
             sx={{
               "@media (min-width: 768px)": {
                 paddingLeft: "24px",
@@ -102,13 +102,96 @@ const ProductsList = () => {
             }}
           >
             <Grid
-              root
               container
               spacing={2}
-              sx={{ justifyContent: "space-around" }}
+              sx={{
+                justifyContent: "space-between",
+                "@media (min-width: 1200px)": {
+                  justifyContent: "space-between",
+                },
+              }}
             >
-              <Grid root item xs={12} sm={8} md={8} lg={3} xl={3} />
-              <Grid root item xs={12} sm={8} md={8} lg={9} xl={9}>
+              <Grid
+                item
+                xs={12}
+                sm={8}
+                md={8}
+                lg={3}
+                xl={3}
+                sx={{
+                  "@media (min-width: 768px)": {
+                    top: "-153px",
+                  },
+
+                  "@media (min-width: 992px)": {
+                    top: "-195px",
+                  },
+                  "@media (min-width: 1200px)": {
+                    top: 0,
+                    position: "relative",
+                  },
+                  top: "-50px",
+                  width: "100%",
+                  display: "flex",
+                  zIndex: "111",
+                  position: "sticky",
+                  flexDirection: "column",
+                  backgroundColor: "#f9f9fb",
+                }}
+              >
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    marginTop: "0",
+                    flexDirection: "column",
+                    paddingBottom: "8px",
+                    backgroundColor: "#f9f9fb",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      margin: "21px",
+                    }}
+                  >
+                    <IconButton>
+                      <SearchIcon />
+                    </IconButton>
+                    <InputBase
+                      placeholder="Search products…"
+                      inputProps={{ "aria-label": "search products" }}
+                      onChange={handleSearchChange}
+                    />
+                  </Box>
+
+                  <Box sx={{ margin: "21px" }}>
+                    <Typography sx={{ marginBottom: "20px" }}>
+                      Categories:
+                    </Typography>
+                    <List>
+                      <ListItem
+                        button
+                        key="All"
+                        onClick={() => handleCategorySelect(null)}
+                      >
+                        <ListItemText primary="All categories" />
+                      </ListItem>
+                      {categories.map((category) => (
+                        <ListItem
+                          button
+                          key={category}
+                          onClick={() => handleCategorySelect(category)}
+                        >
+                          <ListItemText primary={category} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Box>
+                </div>
+              </Grid>
+              <Grid item xs={12} sm={8} md={8} lg={9} xl={9}>
                 <div>
                   <div style={{ height: "auto", overflow: "visible" }}>
                     <Box
@@ -131,28 +214,32 @@ const ProductsList = () => {
                             if (products.length === 0) return null;
 
                             return (
-                              <Box key={category} sx={{ margin: "21px" }}>
-                                <Typography
-                                  component="h2"
-                                  sx={{
-                                    padding: 0,
-                                    fontSize: "24px",
-                                    fontWeight: "bold",
-                                    lineHeight: "33px",
-                                    color: "#c5022e",
-                                    margin: "10px",
-                                    marginBottom: "50px",
-                                  }}
-                                >
-                                  {category}
-                                </Typography>
-
+                              <>
+                                <Box key={category} sx={{ margin: "21px" }}>
+                                  <Typography
+                                    component="h2"
+                                    sx={{
+                                      padding: 0,
+                                      fontSize: "24px",
+                                      fontWeight: "bold",
+                                      lineHeight: "33px",
+                                      color: "#c5022e",
+                                      margin: "10px",
+                                      marginBottom: "50px",
+                                    }}
+                                  >
+                                    {category}
+                                  </Typography>
+                                </Box>
                                 <Grid
-                                  root
                                   container
                                   spacing={{ xs: 5 }}
-                                  // columns={{ xs: 4, sm: 8, md: 12 }}
-                                  sx={{ justifyContent: "space-around" }}
+                                  sx={{
+                                    "@media (min-width: 1200px)": {
+                                      justifyContent: "start ",
+                                    },
+                                    justifyContent: "space-around",
+                                  }}
                                 >
                                   {products.map((product) => (
                                     <ProductItem
@@ -161,7 +248,7 @@ const ProductsList = () => {
                                     />
                                   ))}
                                 </Grid>
-                              </Box>
+                              </>
                             );
                           }
                         )}
@@ -171,13 +258,63 @@ const ProductsList = () => {
                 </div>
               </Grid>
             </Grid>
-          </Container>
+          </Grid>
         </Box>
       </Box>
       {/* mine end */}
       <Box>
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={8}
+          lg={3}
+          xl={3}
+          sx={{
+            "@media (min-width: 768px)": {
+              top: "-153px",
+            },
+
+            "@media (min-width: 992px)": {
+              top: "-195px",
+            },
+            "@media (min-width: 1200px)": {
+              top: 0,
+              position: "relative",
+            },
+            top: "-50px",
+            width: "100%",
+            display: "flex",
+            zIndex: "111",
+            position: "sticky",
+            flexDirection: "column",
+            backgroundColor: "#f9f9fb",
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              marginTop: "0",
+              flexDirection: "column",
+              paddingBottom: "8px",
+              backgroundColor: "#f9f9fb",
+            }}
+          >
+            {/* <Box sx={{ display: "flex", alignItems: "center", margin: "21px" }}>
+              <IconButton>
+                <SearchIcon />
+              </IconButton>
+              <InputBase
+                placeholder="Search products…"
+                inputProps={{ "aria-label": "search products" }}
+                onChange={handleSearchChange}
+              />
+            </Box> */}
+          </div>
+        </Grid>
         {/* Search input */}
-        <Box sx={{ display: "flex", alignItems: "center", margin: "21px" }}>
+        {/* <Box sx={{ display: "flex", alignItems: "center", margin: "21px" }}>
           <IconButton>
             <SearchIcon />
           </IconButton>
@@ -189,7 +326,7 @@ const ProductsList = () => {
         </Box>
 
         {/* Category list */}
-        <Box sx={{ margin: "21px" }}>
+        {/* <Box sx={{ margin: "21px" }}>
           <Typography sx={{ marginBottom: "20px" }}>Categories:</Typography>
           <List>
             <ListItem
@@ -209,11 +346,10 @@ const ProductsList = () => {
               </ListItem>
             ))}
           </List>
-        </Box>
+        </Box> */}
       </Box>
-
       {/* Products list */}
-      <Box sx={{ flexGrow: 1, justifyContent: "space-between" }}>
+      {/* <Box sx={{ flexGrow: 1, justifyContent: "space-between" }}>
         {Object.entries(productsByCategory).map(([category, products]) => {
           products = filterProducts(products);
           if (products.length === 0) return null;
@@ -246,7 +382,7 @@ const ProductsList = () => {
             </Box>
           );
         })}
-      </Box>
+      </Box> */}
     </>
   );
 };

@@ -97,27 +97,32 @@ const ProductItem = ({ product }) => {
   return (
     <>
       <Grid
-       root
-       item
-        spacing={2}
-        xs={6}
-        sm={6}
-        md={5}
-        lg={3}
-        xl={3}
         sx={{
-          justifyContent: "space-around",
-          margin: "-20px",
-          display: "flex",
-          boxSizing: "border-box",
+          "@media (min-width: 768px)": {
+            flexGrow: 0,
+            maxWidth: "50%",
+            flexBasis: "50%",
+          },
+
+          "@media (min-width: 992px)": {
+            flexGrow: 0,
+            maxWidth: "41.666667%",
+            flexBasis: "41.666667%",
+          },
+          "@media (min-width: 1200px)": {
+            flexGrow: "0px",
+            maxWidth: "25%",
+            flexBasis: "25%",
+            margin: "10px",
+          },
         }}
       >
         <Grid
-          //   item
+        //   item
 
-          sx={{ padding: "20px", margin: 0, boxSizing: "border-box" }}
-          spacing={{ xs: 2, md: 3 }}
-          columns={{ xs: 4, sm: 8, md: 12 }}
+        // sx={{ padding: "20px", margin: -1, boxSizing: "border-box" }}
+        // spacing={{ xs: 2, md: 3 }}
+        // columns={{ xs: 4, sm: 8, md: 12 }}
         >
           {/* <Item> */}
           <Button onClick={handleOpen}>
@@ -283,10 +288,11 @@ const ProductItem = ({ product }) => {
             sx={{ borderRadius: "10px" }}
           >
             <Dialog
+             width="100%"
               center
               height="100%"
               //   maxWidth="768px"
-              width="100%"
+             
               display="flex"
               outline="0"
               open={open}
