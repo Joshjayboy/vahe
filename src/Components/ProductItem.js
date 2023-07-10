@@ -334,8 +334,7 @@ const ProductItem = ({ product }) => {
                     },
                   }}
                   style={{
-                    backgroundImage:
-                      'url(	https://menu.am/resources/default/img/restaurant_products/big/1676552548580-2653.jpg)',
+                    backgroundImage: product.imageUrl ? `url(${product.imageUrl})` : 'none',
                   }}
                 >
                   <Box
@@ -377,38 +376,6 @@ const ProductItem = ({ product }) => {
                     padding: '16px',
                   }}
                 >
-                  <a href='/' style={{ color: '#000', textDecoration: 'none' }}>
-                    <picture>
-                      <img
-                        alt='image'
-                        src='https://menu.am/resources/default/img/restaurants/big/1676525821737-2653.jpg'
-                        style={{
-                          width: '32px',
-                          height: 'auto',
-                          objectFit: 'cover',
-                          lineHeight: 0,
-                          marginRight: '8px',
-                          verticalAlign: 'middle',
-                          '@media (min-width: 768px)': {
-                            width: '64px',
-                          },
-                        }}
-                      />
-                    </picture>
-                    <span
-                      style={{
-                        overflow: 'hidden',
-                        fontSize: '10px',
-                        whiteSpace: 'nowrap',
-                        textOverflow: 'ellipsis',
-                        '@media (min-width: 768px)': {
-                          fontSize: '16px',
-                        },
-                      }}
-                    >
-                      Made in China
-                    </span>
-                  </a>
                   <Box
                     sx={{
                       fontWeight: 'bold',

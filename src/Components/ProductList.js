@@ -165,6 +165,8 @@ const ProductsList = () => {
                         </InputAdornment>
                       }
                       placeholder='Search Products'
+                      onChange={handleSearchChange}
+
                     />
                   </FormControl>
 
