@@ -13,6 +13,12 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 
+import InputAdornment from "@mui/material/InputAdornment";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
 import Container from "@mui/material/Container";
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
@@ -77,7 +83,7 @@ const ProductsList = () => {
   return (
     <>
       <Logout />
-      {/* mine start */}
+
       <Box sx={{ minHeight: "600px", marginTop: "30px" }}>
         <Box
           sx={{
@@ -93,11 +99,13 @@ const ProductsList = () => {
         >
           <Grid
             spacing={2}
-            // maxWidthXl
             sx={{
               "@media (min-width: 768px)": {
                 paddingLeft: "24px",
                 paddingRight: "24px",
+              },
+              "@media (min-width: 1200px)": {
+                justifyContent: "space-between",
               },
             }}
           >
@@ -119,24 +127,25 @@ const ProductsList = () => {
                 lg={3}
                 xl={3}
                 sx={{
+                  "@media (min-width: 992px)": {
+                    top: "-195px",
+                  },
                   "@media (min-width: 768px)": {
                     top: "-153px",
                   },
 
-                  "@media (min-width: 992px)": {
-                    top: "-195px",
-                  },
                   "@media (min-width: 1200px)": {
                     top: 0,
                     position: "relative",
                   },
-                  top: "-50px",
+                  top: "50px",
                   width: "100%",
                   display: "flex",
                   zIndex: "111",
                   position: "sticky",
                   flexDirection: "column",
                   backgroundColor: "#f9f9fb",
+                  boxSizing: "border-box",
                 }}
               >
                 <div
@@ -149,22 +158,19 @@ const ProductsList = () => {
                     backgroundColor: "#f9f9fb",
                   }}
                 >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      margin: "21px",
-                    }}
-                  >
-                    <IconButton>
-                      <SearchIcon />
-                    </IconButton>
-                    <InputBase
-                      placeholder="Search products…"
-                      inputProps={{ "aria-label": "search products" }}
-                      onChange={handleSearchChange}
+                  <FormControl>
+                    <OutlinedInput
+                      type="text"
+                      startAdornment={
+                        <InputAdornment position="end">
+                          <IconButton edge="start">
+                            <SearchIcon />
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      placeholder="Search Products"
                     />
-                  </Box>
+                  </FormControl>
 
                   <Box sx={{ margin: "21px" }}>
                     <Typography sx={{ marginBottom: "20px" }}>
@@ -189,9 +195,19 @@ const ProductsList = () => {
                       ))}
                     </List>
                   </Box>
+
+                  {/* search end */}
                 </div>
               </Grid>
-              <Grid item xs={12} sm={8} md={8} lg={9} xl={9}>
+              <Grid
+                // item
+                sx={{ paddingLeft: 1 }}
+                xs={12}
+                sm={8}
+                md={8}
+                lg={8.69}
+                xl={9}
+              >
                 <div>
                   <div style={{ height: "auto", overflow: "visible" }}>
                     <Box
@@ -215,7 +231,7 @@ const ProductsList = () => {
 
                             return (
                               <>
-                                <Box key={category} sx={{ margin: "21px" }}>
+                                <Box key={category} sx={{ margin: "-1px" }}>
                                   <Typography
                                     component="h2"
                                     sx={{
@@ -235,6 +251,7 @@ const ProductsList = () => {
                                   container
                                   spacing={{ xs: 5 }}
                                   sx={{
+                                    marginBottom: "10%",
                                     "@media (min-width: 1200px)": {
                                       justifyContent: "start ",
                                     },
@@ -261,128 +278,6 @@ const ProductsList = () => {
           </Grid>
         </Box>
       </Box>
-      {/* mine end */}
-      <Box>
-        <Grid
-          item
-          xs={12}
-          sm={8}
-          md={8}
-          lg={3}
-          xl={3}
-          sx={{
-            "@media (min-width: 768px)": {
-              top: "-153px",
-            },
-
-            "@media (min-width: 992px)": {
-              top: "-195px",
-            },
-            "@media (min-width: 1200px)": {
-              top: 0,
-              position: "relative",
-            },
-            top: "-50px",
-            width: "100%",
-            display: "flex",
-            zIndex: "111",
-            position: "sticky",
-            flexDirection: "column",
-            backgroundColor: "#f9f9fb",
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              marginTop: "0",
-              flexDirection: "column",
-              paddingBottom: "8px",
-              backgroundColor: "#f9f9fb",
-            }}
-          >
-            {/* <Box sx={{ display: "flex", alignItems: "center", margin: "21px" }}>
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
-              <InputBase
-                placeholder="Search products…"
-                inputProps={{ "aria-label": "search products" }}
-                onChange={handleSearchChange}
-              />
-            </Box> */}
-          </div>
-        </Grid>
-        {/* Search input */}
-        {/* <Box sx={{ display: "flex", alignItems: "center", margin: "21px" }}>
-          <IconButton>
-            <SearchIcon />
-          </IconButton>
-          <InputBase
-            placeholder="Search products…"
-            inputProps={{ "aria-label": "search products" }}
-            onChange={handleSearchChange}
-          />
-        </Box>
-
-        {/* Category list */}
-        {/* <Box sx={{ margin: "21px" }}>
-          <Typography sx={{ marginBottom: "20px" }}>Categories:</Typography>
-          <List>
-            <ListItem
-              button
-              key="All"
-              onClick={() => handleCategorySelect(null)}
-            >
-              <ListItemText primary="All categories" />
-            </ListItem>
-            {categories.map((category) => (
-              <ListItem
-                button
-                key={category}
-                onClick={() => handleCategorySelect(category)}
-              >
-                <ListItemText primary={category} />
-              </ListItem>
-            ))}
-          </List>
-        </Box> */}
-      </Box>
-      {/* Products list */}
-      {/* <Box sx={{ flexGrow: 1, justifyContent: "space-between" }}>
-        {Object.entries(productsByCategory).map(([category, products]) => {
-          products = filterProducts(products);
-          if (products.length === 0) return null;
-
-          return (
-            <Box key={category} sx={{ margin: "21px" }}>
-              <Typography
-                sx={{
-                  padding: 0,
-                  fontSize: "24px",
-                  fontWeight: "bold",
-                  lineHeight: "33px",
-                  color: "#c5022e",
-                  margin: "10px",
-                  marginBottom: "50px",
-                }}
-              >
-                {category}
-              </Typography>
-
-              <Grid
-                container
-                spacing={{ xs: 2, md: 3 }}
-                columns={{ xs: 4, sm: 8, md: 12 }}
-              >
-                {products.map((product) => (
-                  <ProductItem key={product.id} product={product} />
-                ))}
-              </Grid>
-            </Box>
-          );
-        })}
-      </Box> */}
     </>
   );
 };

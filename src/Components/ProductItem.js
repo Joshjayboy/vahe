@@ -17,10 +17,13 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 
 const ProductItem = ({ product }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -28,9 +31,12 @@ const ProductItem = ({ product }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const openModal = () => {
-    setModalOpen(true);
+  const handleClickopen = () => {
+    setOpen(true);
   };
+
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const closeModal = () => {
     setModalOpen(false);
@@ -94,36 +100,22 @@ const ProductItem = ({ product }) => {
   `
   );
 
+  const paperStyles = {
+    // width: "800px",
+    borderRadius: "10px",
+    // other styles as needed
+  };
+
+  const paperStyless = {
+    display: "flex",
+    marginTop: "-8px",
+    marginBottom: "-8px",
+  };
+
   return (
     <>
-      <Grid
-        sx={{
-          "@media (min-width: 768px)": {
-            flexGrow: 0,
-            maxWidth: "50%",
-            flexBasis: "50%",
-          },
-
-          "@media (min-width: 992px)": {
-            flexGrow: 0,
-            maxWidth: "41.666667%",
-            flexBasis: "41.666667%",
-          },
-          "@media (min-width: 1200px)": {
-            flexGrow: "0px",
-            maxWidth: "25%",
-            flexBasis: "25%",
-            margin: "10px",
-          },
-        }}
-      >
-        <Grid
-        //   item
-
-        // sx={{ padding: "20px", margin: -1, boxSizing: "border-box" }}
-        // spacing={{ xs: 2, md: 3 }}
-        // columns={{ xs: 4, sm: 8, md: 12 }}
-        >
+      <Grid>
+        <Grid>
           {/* <Item> */}
           <Button onClick={handleOpen}>
             <Card
@@ -132,6 +124,7 @@ const ProductItem = ({ product }) => {
                 justifyContent: "space-around",
                 boxShadow: "0px 0px 0px 0.7px rgb(0 0 0 / 12%)",
                 borderRadius: "10px",
+                outline: "none",
                 transition:
                   "transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
               }}
@@ -152,7 +145,8 @@ const ProductItem = ({ product }) => {
                       top: "10px",
                       right: "10px",
                       width: "24px",
-                      cursor: "pointer",
+
+                      // cursor: "pointer",
                       height: "24px",
                       position: "absolute",
                     }}
@@ -278,288 +272,317 @@ const ProductItem = ({ product }) => {
             </Card>
           </Button>
 
-          <Modal
+          <Dialog
+            fullWidth
             open={open}
-            // maxWidth="768px"
-            width="100%"
             onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            sx={{ borderRadius: "10px" }}
+            PaperProps={{ style: paperStyles }}
           >
-            <Dialog
-             width="100%"
-              center
-              height="100%"
-              //   maxWidth="768px"
-             
-              display="flex"
-              outline="0"
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle sx={{ position: "relative" }}>
-                <Button
-                  type="button"
-                  onClick={handleClose}
+            <DialogTitle sx={{ position: "relative" }}>
+              <Button
+                type="button"
+                onClick={handleClose}
+                sx={{
+                  top: "10px",
+                  right: "10px",
+                  position: "absolute",
+                  overflowX: "hidden",
+                }}
+              >
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="#e3e3e3"
+                      d="M18.3,5.71a1,1,0,0,0-1.41,0L12,10.59,7.11,5.7A1,1,0,0,0,5.7,7.11L10.59,12,5.7,16.89A1,1,0,0,0,7.11,18.3L12,13.41l4.89,4.89a1,1,0,0,0,1.41-1.41L13.41,12,18.3,7.11A1,1,0,0,0,18.3,5.71Z"
+                    ></path>
+                  </svg>
+                </span>
+              </Button>
+            </DialogTitle>
+            <DialogContent PaperProps={{ style: paperStyless }}>
+              <Card
+                sx={{
+                  display: "flex",
+                  marginTop: "8px",
+                  marginBottom: "8px",
+                  overflow: "hidden",
+                  boxShadow: "none",
+                  borderRadius: "10px",
+                  color: "#424242",
+                  transition:
+                    "box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+                  backgroundColor: "#fff",
+                }}
+              >
+                <CardMedia
                   sx={{
-                    top: "10px",
-                    right: "10px",
-                    position: "absolute",
-                    overflowX: "hidden",
-                    // onClick: { handleClose },
-                    // onClose: { handleClose },
+                    width: "150px",
+                    height: "150px",
+                    position: "relative",
+                    borderBottomRightRadius: "10px",
+                    borderTopRightRadius: "10px",
+                    display: "block",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    "@media (min-width: 768px)": {
+                      width: "60%",
+                      height: "300px",
+                    },
+                  }}
+                  style={{
+                    backgroundImage:
+                      "url(	https://menu.am/resources/default/img/restaurant_products/big/1676552548580-2653.jpg)",
                   }}
                 >
-                  <span>
+                  <Box
+                    component="span"
+                    sx={{
+                      right: "8.8px",
+                      cursor: "pointer",
+                      position: "absolute",
+                      "@media (min-width: 768px)": {
+                        top: "9.6px",
+                      },
+                    }}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
-                      viewBox="0 0 24 24"
+                      viewBox="0 0 20.483 18.921"
                     >
                       <path
-                        fill="#e3e3e3"
-                        d="M18.3,5.71a1,1,0,0,0-1.41,0L12,10.59,7.11,5.7A1,1,0,0,0,5.7,7.11L10.59,12,5.7,16.89A1,1,0,0,0,7.11,18.3L12,13.41l4.89,4.89a1,1,0,0,0,1.41-1.41L13.41,12,18.3,7.11A1,1,0,0,0,18.3,5.71Z"
+                        d="M9.717,17.815c18.469-12.169,6.023-22.376,0-15.7C3.695-4.561-8.752,5.645,9.717,17.815Z"
+                        transform="translate(0.524 0.507)"
+                        fill="none"
+                        stroke="#ea1f4d"
+                        stroke-width="1"
+                        fill-rule="evenodd"
                       ></path>
                     </svg>
-                  </span>
-                </Button>
-              </DialogTitle>
-              <DialogContent
-                sx={{
-                  flex: "1 1 auto",
-                  padding: "8px 24px",
-                  overflowY: "auto",
-                  overflowX: "hidden",
-                }}
-              >
-                <Card
+                  </Box>
+                </CardMedia>
+                <CardContent
                   sx={{
-                    display: "flex",
-                    marginTop: "8px",
-                    marginBottom: "8px",
-                    overflow: "hidden",
-                    boxShadow: "none",
-                    borderRadius: "10px",
-                    color: "#424242",
-                    transition:
-                      "box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-                    backgroundColor: "#fff",
+                    width: "calc(100% - 150px)",
+                    position: "relative",
+                    minHeight: "100%",
+                    paddingTop: "0",
+                    paddingRight: "0!important",
+                    paddingBottom: "0!important",
+                    padding: "16px",
                   }}
                 >
-                  <CardMedia
-                    sx={{
-                      width: "60%",
-                      height: "300px",
-                      position: "relative",
-                      borderBottomRightRadius: "10px",
-                      borderTopRightRadius: "10px",
-                      display: "block",
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",
-                    }}
-                    style={{
-                      backgroundImage:
-                        "url(	https://menu.am/resources/default/img/restaurant_products/big/1676552548580-2653.jpg)",
-                    }}
-                  >
-                    <Box
-                      component="span"
-                      sx={{
-                        right: "8.8px",
-                        cursor: "pointer",
-                        position: "absolute",
+                  <a href="/" style={{ color: "#000", textDecoration: "none" }}>
+                    <picture>
+                      <img
+                        alt="image"
+                        src="https://menu.am/resources/default/img/restaurants/big/1676525821737-2653.jpg"
+                        style={{
+                          width: "32px",
+                          height: "auto",
+                          objectFit: "cover",
+                          lineHeight: 0,
+                          marginRight: "8px",
+                          verticalAlign: "middle",
+                          "@media (min-width: 768px)": {
+                            width: "64px",
+                          },
+                        }}
+                      />
+                    </picture>
+                    <span
+                      style={{
+                        overflow: "hidden",
+                        fontSize: "10px",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
+                        "@media (min-width: 768px)": {
+                          fontSize: "16px",
+                        },
                       }}
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 20.483 18.921"
-                      >
-                        <path
-                          d="M9.717,17.815c18.469-12.169,6.023-22.376,0-15.7C3.695-4.561-8.752,5.645,9.717,17.815Z"
-                          transform="translate(0.524 0.507)"
-                          fill="none"
-                          stroke="#ea1f4d"
-                          stroke-width="1"
-                          fill-rule="evenodd"
-                        ></path>
-                      </svg>
-                    </Box>
-                  </CardMedia>
-                  <CardContent
+                      Made in China
+                    </span>
+                  </a>
+                  <Box
                     sx={{
-                      width: "calc(100% - 150px)",
-                      position: "relative",
-                      minHeight: "100%",
-                      paddingTop: "0",
-                      paddingRight: "0!important",
-                      paddingBottom: "0!important",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        fontWeight: "bold",
-                        paddingBottom: "8px",
+                      fontWeight: "bold",
+                      paddingBottom: "8px",
+
+                      "@media (min-width: 0px)": {
+                        fontSize: "16px",
+                      },
+                      "@media (min-width: 768px)": {
                         paddingTop: "8px",
                         fontSize: "20px",
-                      }}
-                    >
-                      {product.name}
-                    </Box>
-                    <Box
-                      sx={{
-                        width: "calc(100% - 16px)",
-                        bottom: 0,
-                        display: "flex",
-                        position: "absolute",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <Box sx={{ marginTop: "4px", marginBottom: "4px" }}>
-                        <Box
-                          component="span"
-                          sx={{ fontSize: "20px", fontWeight: 900 }}
-                        >
-                          {product.price}
-                        </Box>
-                        <Box
-                          component="span"
-                          sx={{
-                            fontSize: "15px",
-                            fontWeight: 900,
-                            marginLeft: "1.6px",
-                          }}
-                        >
-                          AMD
-                        </Box>
-                      </Box>
-
-                      <Box
-                        sx={{
-                          display: "flex",
-                          maxWidth: "120px",
-                          boxSizing: "border-box",
-                          fontSize: "16px",
-                        }}
-                      >
-                        <Button
-                          fontSize="16px"
-                          // padding="4.5px 13.12px"
-                          style={{
-                            padding: "3px 13.12px",
-                            border: "none",
-                            margin: 0,
-                            boxSizing: "border-box",
-                            fontSize: "16px",
-                            dispaly: "inline-flex",
-                            outline: 0,
-                            position: "relative",
-                            borderRadius: "30px",
-                          }}
-                        >
-                          -
-                        </Button>
-                        <div sx={{ overflow: "hidden", maxWidth: "40px" }}>
-                          <Input
-                            sx={{
-                              width: "100%",
-                              border: "none",
-                              margin: 0,
-                              outline: 0,
-                              padding: "3px",
-                              boxSizing: "border-box",
-                              textAlign: "center",
-                              value: "1",
-                            }}
-                          >
-                            1
-                          </Input>
-                        </div>
-                        <Button
-                          sx={{
-                            padding: "4.5px 13.12px",
-                            background: "#E7E7E7",
-                            borderRadius: "30px",
-                            border: "none",
-                            margin: 0,
-                            dispaly: "inline-flex",
-                            outline: 0,
-                            position: "relative",
-                            boxSizing: "border-box",
-                            transition:
-                              "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-                            alignItems: "center",
-                            verticalAlign: "middle",
-                            justifyContent: "center",
-                            textDecoration: "none",
-                          }}
-                        >
-                          +
-                        </Button>
-                      </Box>
-                    </Box>
-                  </CardContent>
-                </Card>
-
-                <Box sx={{ fontSize: "16px", marginTop: "24px" }}>
-                  {product.description}
-                </Box>
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    marginTop: "24px",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Box sx={{ width: "80%" }}>
-                    <StyledTextarea
-                      aria-label="minimum height"
-                      minRows={4}
-                      placeholder="Your comment to the order"
-                    />
-                  </Box>
-                </Box>
-              </DialogContent>
-              <DialogActions
-                sx={{ paddingBottom: "32px", justifyContent: "center" }}
-              >
-                <Box sx={{ marginTop: "16px", width: "60%" }}>
-                  <Button
-                    sx={{
-                      color: "#fff",
-                      width: "100%",
-                      boxShadow: "none",
-                      background:
-                        "transparent linear-gradient(180deg, #c5022e 0%, #ea1f4d 100%) 0% 0% no-repeat",
-                      padding: "10px 18px",
-                      fontWeight: "bold",
-                      lineHeight: "22px",
-                      textTransform: "inherit",
-                      borderRadius: "10px",
+                      },
                     }}
                   >
-                    <span
+                    {product.name}
+                  </Box>
+                  <Box
+                    sx={{
+                      width: "calc(100% - 16px)",
+                      bottom: 0,
+                      display: "flex",
+                      position: "absolute",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <Box sx={{ marginTop: "4px", marginBottom: "4px" }}>
+                      <Box
+                        component="span"
+                        sx={{
+                          fontSize: "20px",
+                          fontWeight: "900",
+                        }}
+                      >
+                        {product.price}
+                      </Box>
+                      <Box
+                        component="span"
+                        sx={{
+                          fontSize: "15px",
+                          fontWeight: 900,
+                          marginLeft: "1.6px",
+                        }}
+                      >
+                        AMD
+                      </Box>
+                    </Box>
+
+                    <Box
                       sx={{
-                        width: "100%",
-                        display: "inherit",
-                        alignItems: "inherit",
-                        justifyContent: "inherit",
+                        display: "flex",
+                        maxWidth: "120px",
+                        boxSizing: "border-box",
+                        // fontSize: "16px",
                       }}
                     >
-                      Add to Cart
-                    </span>
-                  </Button>
+                      <button
+                        style={{
+                          padding: "4.5px 13.12px",
+                          border: "none",
+                          margin: 0,
+                          boxSizing: "border-box",
+                          fontSize: "16px",
+                          display: "inline-flex",
+                          outline: 0,
+                          position: "relative",
+                          borderRadius: "30px",
+                          alignItems: "center",
+                          verticalAlign: "middle",
+                          justifyContent: "center",
+                          textDecoration: "none",
+                          background: "#E7E7E7",
+                          borderRadius: "30px",
+                        }}
+                      >
+                        -
+                      </button>
+                      <div sx={{ overflow: "hidden", maxWidth: "40px" }}>
+                        <input
+                          type="text"
+                          maxLength="3"
+                          value="1"
+                          readOnly
+                          style={{
+                            width: "100%",
+                            border: "none",
+                            margin: 0,
+                            outline: 0,
+                            padding: "3px",
+                            boxSizing: "border-box",
+                            textAlign: "center",
+                            value: "1",
+                          }}
+                        ></input>
+                      </div>
+                      <button
+                        style={{
+                          padding: "5.5px 10.98px",
+                          border: "none",
+                          margin: 0,
+                          boxSizing: "border-box",
+                          fontSize: "16px",
+                          display: "inline-flex",
+                          outline: 0,
+                          position: "relative",
+                          borderRadius: "30px",
+                          alignItems: "center",
+                          verticalAlign: "middle",
+                          justifyContent: "center",
+                          textDecoration: "none",
+                          background: "#E7E7E7",
+                          borderRadius: "30px",
+                        }}
+                      >
+                        +
+                      </button>
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+
+              <Box sx={{ fontSize: "16px", marginTop: "24px" }}>
+                {product.description}
+              </Box>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  marginTop: "24px",
+                  justifyContent: "center",
+                }}
+              >
+                <Box sx={{ width: "80%" }}>
+                  <StyledTextarea
+                    aria-label="minimum height"
+                    minRows={4}
+                    placeholder="Your comment to the order"
+                  />
                 </Box>
-              </DialogActions>
-            </Dialog>
-          </Modal>
+              </Box>
+            </DialogContent>
+            <DialogActions
+              sx={{ paddingBottom: "32px", justifyContent: "center" }}
+            >
+              <Box sx={{ marginTop: "16px", width: "60%" }}>
+                <Button
+                  sx={{
+                    color: "#fff",
+                    width: "100%",
+                    boxShadow: "none",
+                    background:
+                      "transparent linear-gradient(180deg, #c5022e 0%, #ea1f4d 100%) 0% 0% no-repeat",
+                    padding: "10px 18px",
+                    fontWeight: "bold",
+                    lineHeight: "22px",
+                    textTransform: "inherit",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <span
+                    sx={{
+                      width: "100%",
+                      display: "inherit",
+                      alignItems: "inherit",
+                      justifyContent: "inherit",
+                    }}
+                  >
+                    Add to Cart
+                  </span>
+                </Button>
+              </Box>
+            </DialogActions>
+          </Dialog>
         </Grid>
       </Grid>
     </>
