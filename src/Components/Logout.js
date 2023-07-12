@@ -18,6 +18,7 @@ const Logout = () => {
 
       if (response.status === 200) {
         sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('loggedInUser')
         navigate('/login');
       }
     } catch (error) {

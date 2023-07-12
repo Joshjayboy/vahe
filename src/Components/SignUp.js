@@ -47,6 +47,7 @@ function SignUp() {
       console.log('User registered successfully');
       const accessToken = response.data.accessToken;
       sessionStorage.setItem('accessToken', accessToken);
+      sessionStorage.setItem("loggedInUser", JSON.stringify(response.data.customerDto));
       navigate('/');
     } catch (error) {
       console.log('Registration failed');

@@ -50,6 +50,7 @@ const LoginForm = () => {
 
       const accessToken = response.data.accessToken;
       sessionStorage.setItem("accessToken", accessToken);
+      sessionStorage.setItem("loggedInUser", JSON.stringify(response.data.customerDto));
       setIsLoggedIn(true);
     } catch (error) {
       setErrorMsg(error.response.data.message);
