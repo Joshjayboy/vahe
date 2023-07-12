@@ -1,16 +1,17 @@
-import React from 'react';
-import ProductList from '../Components/ProductList';
+import React from "react";
+import ProductList from "../Components/ProductList";
+import NavBar from "../Components/NavBar";
 
 function Menu() {
   // test modal
 
   const renderProducts = () => {
-    return (<div>
+    return (
+      <div>
         {/* <Logout/> */}
+        <NavBar />
         <ProductList />
       </div>
-
-
     );
   };
 
